@@ -1,6 +1,6 @@
 ---
 name: rapidapi-mcp
-description: Access RapidAPI MCP servers (Twitter, YouTube, etc.) via direct JSON-RPC calls
+description: "Template skill for RapidAPI MCP integration. Add any RapidAPI endpoint (Twitter, YouTube, etc.) via JSON-RPC."
 metadata:
   {
     "openclaw":
@@ -13,21 +13,33 @@ metadata:
 
 # rapidapi-mcp
 
-Access RapidAPI MCP servers directly via JSON-RPC. This bypasses mcporter's stdio issues.
+Template skill for accessing RapidAPI MCP servers via direct JSON-RPC calls. Use this to add any RapidAPI endpoint.
 
-## Usage
+## Setup
 
-Call RapidAPI MCP endpoints using direct curl:
+### 1. Get Your RapidAPI Key
+
+1. Go to [RapidAPI](https://rapidapi.com)
+2. Create account and subscribe to desired APIs
+3. Get your API key from dashboard
+
+### 2. Enable MCP
+
+1. Open the API in **Playground**
+2. Click **MCP button** to enable
+3. Copy the configuration shown
+
+### 3. Use Direct JSON-RPC
+
+**Important:** Use `https://mcp.rapidapi.com/` (NOT `/jsonrpc`)
 
 ```bash
-# Base URL (no /jsonrpc suffix!)
+# Variables
 URL="https://mcp.rapidapi.com/"
-
-# Headers
-HOST="twitter241.p.rapidapi.com"  # or yt-api.p.rapidapi.com, etc.
+HOST="YOUR_HOST.p.rapidapi.com"  # e.g., twitter241.p.rapidapi.com
 KEY="your-rapidapi-key"
 
-# JSON-RPC call
+# Initialize
 curl -s -X POST "$URL" \
   -H "Content-Type: application/json" \
   -H "x-api-host: $HOST" \
@@ -35,26 +47,38 @@ curl -s -X POST "$URL" \
   -d '{"jsonrpc":"2.0","method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"openclaw","version":"1.0"}},"id":0}'
 ```
 
-## Available Tools
-
-### Twitter (twitter241.p.rapidapi.com)
-
-- `Get_User_By_Username` - Get user by username
-- `Get_User_Tweets` - Get user's tweets
-- `Search_Twitter` / `Search_Twitter_V2` / `Search_Twitter_V3` - Search tweets
-- `Get_Tweet_Details_V2` - Get tweet by ID
-- `Get_User_Followers` / `Get_User_Followings` - Get followers/following
-- `Get_Post_Likes_Deprecated` / `Get_Post_Comments` - Get likes/comments
-- `Get_Trends_By_Location` - Get trending topics
-- `Get_Community_*` - Community features
-
-### YouTube (yt-api.p.rapidapi.com)
-
-Check available endpoints via `tools/list`
-
-## Example: Get User
+## Call a Tool
 
 ```bash
+curl -s -X POST "https://mcp.rapidapi.com/" \
+  -H "Content-Type: application/json" \
+  -H "x-api-host: YOUR_HOST.p.rapidapi.com" \
+  -H "x-api-key: YOUR_KEY" \
+  -d '{"jsonrpc":"2.0","method":"tools/call","params":{"name":"TOOL_NAME","arguments":{"param":"value"}},"id":1}'
+```
+
+## List Available Tools
+
+```bash
+curl -s -X POST "https://mcp.rapidapi.com/" \
+  -H "Content-Type: application/json" \
+  -H "x-api-host: YOUR_HOST.p.rapidapi.com" \
+  -H "x-api-key: YOUR_KEY" \
+  -d '{"jsonrpc":"2.0","method":"tools/list","params":{},"id":1}'
+```
+
+## Common API Hosts
+
+| API | Host |
+|-----|------|
+| Twitter/X | `twitter241.p.rapidapi.com` |
+| YouTube | `yt-api.p.rapidapi.com` |
+| Streaming | `streaming-availability.p.rapidapi.com` |
+
+## Example: Twitter
+
+```bash
+# Get user
 curl -s -X POST "https://mcp.rapidapi.com/" \
   -H "Content-Type: application/json" \
   -H "x-api-host: twitter241.p.rapidapi.com" \
@@ -62,19 +86,10 @@ curl -s -X POST "https://mcp.rapidapi.com/" \
   -d '{"jsonrpc":"2.0","method":"tools/call","params":{"name":"Get_User_By_Username","arguments":{"username":"MrBeast"}},"id":1}'
 ```
 
-## MCP Config Format
+## Mcporter Alternative
 
-For mcporter (if stdio works):
-
-```json
-{
-  "mcpServers": {
-    "RapidAPI Hub - Twitter": {
-      "command": "npx",
-      "args": ["mcp-remote", "https://mcp.rapidapi.com", "--header", "x-api-host: twitter241.p.rapidapi.com", "--header", "x-api-key: YOUR_KEY"]
-    }
-  }
-}
+```bash
+mcporter config add "my-api" --command npx --args '["mcp-remote","https://mcp.rapidapi.com","--header","x-api-host: YOUR_HOST.p.rapidapi.com","--header","x-api-key: YOUR_KEY"]'
 ```
 
 ## Notes

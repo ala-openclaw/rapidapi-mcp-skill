@@ -7,85 +7,102 @@
 
 ## Overview
 
-This skill enables OpenClaw AI assistants to directly interact with RapidAPI's MCP (Model Context Protocol) servers. Access Twitter/X API, YouTube Data API, and other RapidAPI services through natural language queries.
+This skill helps OpenClaw AI assistants access RapidAPI's MCP (Model Context Protocol) servers. It provides a template and guide for configuring any RapidAPI MCP endpoint - not pre-configured for specific APIs.
+
+**This is a template skill** - configure it with your own RapidAPI subscriptions.
 
 ## Features
 
+- **Template-Based** - Add any RapidAPI MCP endpoint
 - **Direct JSON-RPC Access** - Bypass mcporter stdio issues with direct HTTP calls
-- **Twitter/X Integration** - Search tweets, get user data, retrieve trends
-- **YouTube Data API** - Access video metadata, channels, search
-- **Multiple API Support** - Works with any RapidAPI MCP-enabled endpoint
+- **Flexible API Support** - Works with Twitter, YouTube, or any RapidAPI MCP-enabled endpoint
 - **OpenClaw Compatible** - Seamlessly integrates with OpenClaw AI assistant
 
 ## Installation
 
-```bash
-# Install via OpenClaw skill system
-# The skill will be automatically discovered on restart
-```
+1. Clone this skill to your OpenClaw skills directory
+2. Configure your RapidAPI credentials (see below)
+3. Restart OpenClaw
 
 ## Quick Start
 
-### Configure Your API Key
+### Step 1: Get Your RapidAPI Key
 
-Set your RapidAPI key as an environment variable or pass it directly:
+1. Create a [RapidAPI account](https://rapidapi.com)
+2. Subscribe to desired APIs (Twitter, YouTube, etc.)
+3. Copy your API key from the dashboard
+
+### Step 2: Enable MCP in Playground
+
+1. Go to your desired API on RapidAPI
+2. Open the **Playground**
+3. Test an endpoint that works
+4. **Click the "MCP" button** to enable MCP access
+5. Copy the MCP configuration shown
+
+### Step 3: Configure Your API
+
+Add your API to the skill:
 
 ```bash
-export RAPIDAPI_KEY="your-rapidapi-key"
+# Using mcporter
+mcporter config add "My-API" --command npx --args '["mcp-remote","https://mcp.rapidapi.com","--header","x-api-host: YOUR_HOST.p.rapidapi.com","--header","x-api-key: YOUR_KEY"]'
 ```
 
-### Basic Usage
-
-#### Get Twitter User Information
+Or use direct JSON-RPC (recommended):
 
 ```bash
-# Direct JSON-RPC call
+# Base URL
+URL="https://mcp.rapidapi.com/"
+
+# Your API credentials
+HOST="YOUR_HOST.p.rapidapi.com"
+KEY="your-rapidapi-key"
+
+# Initialize connection
+curl -s -X POST "$URL" \
+  -H "Content-Type: application/json" \
+  -H "x-api-host: $HOST" \
+  -H "x-api-key: $KEY" \
+  -d '{"jsonrpc":"2.0","method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"openclaw","version":"1.0"}},"id":0}'
+```
+
+### Step 4: List Available Tools
+
+```bash
 curl -s -X POST "https://mcp.rapidapi.com/" \
   -H "Content-Type: application/json" \
-  -H "x-api-host: twitter241.p.rapidapi.com" \
-  -H "x-api-key: $RAPIDAPI_KEY" \
-  -d '{"jsonrpc":"2.0","method":"tools/call","params":{"name":"Get_User_By_Username","arguments":{"username":"MrBeast"}},"id":1}'
+  -H "x-api-host: YOUR_HOST.p.rapidapi.com" \
+  -H "x-api-key: YOUR_KEY" \
+  -d '{"jsonrpc":"2.0","method":"tools/list","params":{},"id":1}'
 ```
 
-#### Search Tweets
+### Step 5: Call a Tool
 
 ```bash
 curl -s -X POST "https://mcp.rapidapi.com/" \
   -H "Content-Type: application/json" \
-  -H "x-api-host: twitter241.p.rapidapi.com" \
-  -H "x-api-key: $RAPIDAPI_KEY" \
-  -d '{"jsonrpc":"2.0","method":"tools/call","params":{"name":"Search_Twitter_V2","arguments":{"query":"AI","type":"Top","count":10}},"id":1}'
+  -H "x-api-host: YOUR_HOST.p.rapidapi.com" \
+  -H "x-api-key: YOUR_KEY" \
+  -d '{"jsonrpc":"2.0","method":"tools/call","params":{"name":"TOOL_NAME","arguments":{"param":"value"}},"id":2}'
 ```
-
-## Available Twitter Tools
-
-| Tool | Description |
-|------|-------------|
-| `Get_User_By_Username` | Get user profile by username |
-| `Get_User_Tweets` | Retrieve user's tweets |
-| `Search_Twitter_V2` | Search tweets (Top, Latest, People, Media) |
-| `Get_Tweet_Details_V2` | Get tweet details by ID |
-| `Get_User_Followers` | Get user's followers |
-| `Get_User_Followings` | Get who user follows |
-| `Get_Post_Likes_Deprecated` | Get likes on a tweet |
-| `Get_Post_Comments` | Get comments on a tweet |
-| `Get_Trends_By_Location` | Get trending topics by location |
-| `Get_Community_*` | Various community features |
 
 ## Configuration
 
-### Mcporter Config (Alternative)
+### Finding Your API Host
+
+After enabling MCP in the Playground, your config will show:
 
 ```json
 {
   "mcpServers": {
-    "RapidAPI Hub - Twitter": {
+    "API Name": {
       "command": "npx",
       "args": [
         "mcp-remote",
         "https://mcp.rapidapi.com",
         "--header",
-        "x-api-host: twitter241.p.rapidapi.com",
+        "x-api-host: YOUR_HOST.p.rapidapi.com",
         "--header",
         "x-api-key: YOUR_KEY"
       ]
@@ -94,56 +111,57 @@ curl -s -X POST "https://mcp.rapidapi.com/" \
 }
 ```
 
-## Requirements
+The `YOUR_HOST.p.rapidapi.com` part is your API host.
 
-- `curl` command line tool
-- RapidAPI subscription (free tier available)
-- OpenClaw AI assistant
+### Using with Mcporter
 
-## API Keys
+```bash
+# Add your API
+mcporter config add "My-Twitter-API" \
+  --command npx --args '["mcp-remote","https://mcp.rapidapi.com","--header","x-api-host: twitter241.p.rapidapi.com","--header","x-api-key: YOUR_KEY"]'
 
-Get your free API key from [RapidAPI](https://rapidapi.com):
-
-1. Create a RapidAPI account
-2. Subscribe to desired APIs (Twitter, YouTube, etc.)
-3. Copy your API key from the dashboard
-4. Use the key in the `x-api-key` header
+# List tools
+mcporter list "My-Twitter-API" --schema
+```
 
 ## Troubleshooting
 
 ### "Endpoint does not exist" Error
 
-- Ensure MCP is enabled in RapidAPI Playground
-- Click the "MCP" button in the API Playground to activate
-- Verify your API key has access to the endpoint
+- ✅ Ensure MCP is enabled in RapidAPI Playground
+- ✅ Click the "MCP" button in the API Playground to activate
+- ✅ Verify your API key has access to the endpoint
 
 ### Authentication Issues
 
 - Check your RapidAPI subscription is active
-- Verify API key is correct (starts with `x`)
+- Verify API key is correct
 - Ensure you've subscribed to the specific API
 
-## Use Cases
+## Common API Hosts
 
-- **AI Assistants** - Add Twitter/YouTube search to your AI
-- **Social Media Monitoring** - Track mentions and trends
-- **Content Research** - Fetch video metadata for content ideas
-- **Analytics** - Analyze tweet engagement and followers
+| API | Host |
+|-----|------|
+| Twitter/X | `twitter241.p.rapidapi.com` |
+| YouTube | `yt-api.p.rapidapi.com` |
+| Streaming Availability | `streaming-availability.p.rapidapi.com` |
 
-## Related Projects
+## Requirements
 
-- [OpenClaw](https://github.com/openclaw/openclaw) - AI assistant framework
-- [mcporter](https://mcporter.dev) - MCP server management
-- [RapidAPI](https://rapidapi.com) - API Marketplace
+- `curl` command line tool
+- RapidAPI account with active subscriptions
+- OpenClaw AI assistant
+
+## Keywords
+
+RapidAPI, MCP, OpenClaw, API integration, JSON-RPC, AI assistant, ChatGPT, Claude, LLM tools, Twitter API, YouTube API, API automation
 
 ## License
 
 MIT License - See LICENSE file for details.
 
-## Contributing
+## Related Projects
 
-Contributions welcome! Please open an issue or submit a PR.
-
----
-
-**Keywords:** RapidAPI, MCP, OpenClaw, Twitter API, YouTube API, AI assistant, JSON-RPC, API integration, ChatGPT, Claude, LLM tools
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [mcporter](https://mcporter.dev)
+- [RapidAPI](https://rapidapi.com)

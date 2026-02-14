@@ -1,25 +1,135 @@
 {
   "name": "Twitter",
-  "host": "twitter154.p.rapidapi.com",
-  "description": "Twitter API v1.54 - Get user info, tweets, trends",
+  "host": "twitter241.p.rapidapi.com",
+  "description": "Twitter/X API - user profiles, tweets, followers, search, comments",
   "rapidapi_key": null,
   "endpoints": {
-    "userTweets": {
-      "path": "/user-tweets",
-      "params": {"username": "string", "count": "20"},
-      "description": "Get recent tweets by username"
+    "getUserByUsername": {
+      "path": "/user/by/username",
+      "params": {"username": "string"},
+      "description": "Get user profile by username"
     },
-    "userByScreenName": {
-      "path": "/user-by-screen-name",
-      "params": {"screen_name": "string"},
-      "description": "Get user profile by screen name"
+    "getUsersByIds": {
+      "path": "/user/by/id",
+      "params": {"ids": "string"},
+      "description": "Get users by IDs"
     },
-    "trending": {
-      "path": "/trending",
-      "params": {"woeid": "1"},
-      "description": "Get trending topics"
+    "getUsersByIdsV2": {
+      "path": "/user/by/id/v2",
+      "params": {"ids": "string"},
+      "description": "Get users by IDs V2"
+    },
+    "getUserReplies": {
+      "path": "/user/replies",
+      "params": {"username": "string", "count": "number"},
+      "description": "Get user's replies"
+    },
+    "getUserRepliesV2": {
+      "path": "/user/replies/v2",
+      "params": {"username": "string", "count": "number"},
+      "description": "Get user's replies V2"
+    },
+    "getUserMedia": {
+      "path": "/user/media",
+      "params": {"username": "string", "count": "number"},
+      "description": "Get user's media posts"
+    },
+    "getUserTweets": {
+      "path": "/user/tweets",
+      "params": {"username": "string", "count": "number"},
+      "description": "Get user's tweets"
+    },
+    "getUserFollowings": {
+      "path": "/user/following",
+      "params": {"username": "string", "count": "number"},
+      "description": "Get user's following list"
+    },
+    "getUserFollowingIds": {
+      "path": "/user/following/ids",
+      "params": {"username": "string"},
+      "description": "Get IDs of users someone follows"
+    },
+    "getUserFollowers": {
+      "path": "/user/followers",
+      "params": {"username": "string", "count": "number"},
+      "description": "Get user's followers"
+    },
+    "getUserFollowerIds": {
+      "path": "/user/followers/ids",
+      "params": {"username": "string"},
+      "description": "Get IDs of user's followers"
+    },
+    "getUserVerifiedFollowers": {
+      "path": "/user/followers/verified",
+      "params": {"username": "string"},
+      "description": "Get user's verified followers"
+    },
+    "getHighlights": {
+      "path": "/user/highlights",
+      "params": {"username": "string"},
+      "description": "Get user's highlights"
+    },
+    "getAboutAccount": {
+      "path": "/user/about",
+      "params": {"username": "string"},
+      "description": "Get about account info"
+    },
+    "getPostComments": {
+      "path": "/post/comments",
+      "params": {"postId": "string"},
+      "description": "Get comments on a post"
+    },
+    "getPostCommentsV2": {
+      "path": "/post/comments/v2",
+      "params": {"postId": "string"},
+      "description": "Get comments on a post V2"
+    },
+    "getPostQuotes": {
+      "path": "/post/quotes",
+      "params": {"postId": "string"},
+      "description": "Get quoted tweets of a post"
+    },
+    "getPostRetweets": {
+      "path": "/post/retweets",
+      "params": {"postId": "string"},
+      "description": "Get retweets of a post"
+    },
+    "getTweetDetailsV2": {
+      "path": "/tweet/details/v2",
+      "params": {"tweetId": "string"},
+      "description": "Get tweet details V2"
+    },
+    "getTweetsDetailsByIds": {
+      "path": "/tweets/details",
+      "params": {"ids": "string"},
+      "description": "Get tweets details by IDs"
+    },
+    "getTweetsDetailsByIdsV2": {
+      "path": "/tweets/details/v2",
+      "params": {"ids": "string"},
+      "description": "Get tweets details by IDs V2"
+    },
+    "searchTwitter": {
+      "path": "/search",
+      "params": {"query": "string", "count": "number"},
+      "description": "Search Twitter"
+    },
+    "searchTwitterV2": {
+      "path": "/search/v2",
+      "params": {"query": "string", "count": "number"},
+      "description": "Search Twitter V2"
+    },
+    "searchTwitterV3": {
+      "path": "/search/v3",
+      "params": {"query": "string", "count": "number"},
+      "description": "Search Twitter V3"
+    },
+    "autocomplete": {
+      "path": "/search/autocomplete",
+      "params": {"query": "string"},
+      "description": "Autocomplete search"
     }
   },
-  "subscription_url_pattern": "https://rapidapi.com/*/twitter154*",
+  "subscription_url_pattern": "https://rapidapi.com/*/twitter241*",
   "subscription_required": true
 }

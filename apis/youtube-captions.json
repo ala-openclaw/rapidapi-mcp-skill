@@ -13,8 +13,9 @@
   "best_practices": {
     "language": "Start with 'en' (English). Most videos have English subtitles. Only call /language-list if 'en' returns 404.",
     "response_mode": "Use response_mode=url for faster response and less bandwidth. The API returns a URL to fetch the actual data.",
-    "retry": "API can be slow or timeout. Implement 1-2 retries with exponential backoff.",
-    "parallel": "For multiple videos, fetch transcripts in parallel using async/parallel requests."
+    "retry": "API can be slow or timeout. Implement 2-3 retries with exponential backoff (wait 2s, 4s, 8s).",
+    "parallel": "For multiple videos, fetch transcripts in parallel using async/parallel requests.",
+    "retry_example": "curl with retry: curl --retry 3 --retry-delay 2 ..."
   },
   "error_handling": {
     "404": "Video not found or subtitles not available. Try a different language or check if video exists.",

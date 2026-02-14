@@ -11,7 +11,8 @@
     "min_retweets": "Note: min_retweets=N returns tweets with >= N retweets. A tweet with 970 RT will be excluded when min_retweets=1000.",
     "replies": "The /tweet/replies endpoint returns results in 'replies' array, not 'results'.",
     "optimal_filters": "Best combo for quality results: min_retweets=100 + min_likes=100 + min_replies=50 + language=en. Reduces spam effectively.",
-    "limit": "The API returns max ~20 tweets per call regardless of limit parameter."
+    "limit": "The API returns max ~20 tweets per call regardless of limit parameter.",
+    "trends_woeid": "Trends vary by location. Use WOEID: 1=worldwide, 23424977=USA, 44418=London, 2459115=NYC, 2442047=LA, 23424829=Germany, 638242=Berlin. Note: US/DE trends are often identical - only major cities like London have distinct trends."
   },
   "endpoints": {
     "search": {

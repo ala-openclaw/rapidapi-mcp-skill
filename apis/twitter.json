@@ -7,12 +7,15 @@
   "best_practices": {
     "search": "Use section=top for popular tweets, section=latest for recent. Filter with min_likes and min_retweets.",
     "language": "language=en filters English tweets. Use start_date/end_date for date range.",
-    "pagination": "Use continuation_token from response to get more results.",
+    "pagination": "Use continuation_token from response to get more results. For search: call /search/search/continuation with token. For replies: check continuation_token in response.",
     "min_retweets": "Note: min_retweets=N returns tweets with >= N retweets. A tweet with 970 RT will be excluded when min_retweets=1000.",
     "replies": "The /tweet/replies endpoint returns results in 'replies' array, not 'results'.",
     "optimal_filters": "Best combo for quality results: min_retweets=100 + min_likes=100 + min_replies=50 + language=en. Reduces spam effectively.",
     "limit": "The API returns max ~20 tweets per call regardless of limit parameter.",
-    "trends_woeid": "Trends vary by location. Use WOEID: 1=worldwide, 23424977=USA, 44418=London, 2459115=NYC, 2442047=LA, 23424829=Germany, 638242=Berlin. Note: US/DE trends are often identical - only major cities like London have distinct trends."
+    "trends_woeid": "Trends vary by location. Use WOEID: 1=worldwide, 23424977=USA, 44418=London, 2459115=NYC, 2442047=LA, 23424829=Germany, 638242=Berlin, 609153=Paris, 1118370=Tokyo, 1105779=Sydney. Note: US/DE trends are often identical - only major cities like London/Tokyo/Sydney have distinct trends.",
+    "trends_response": "Response is an array: data[0]['trends'][]. Each trend has: name, url, query, tweet_volume (often null).",
+    "trends_volume": "tweet_volume is often null. When present, it's the number of posts in last 24h.",
+    "search_geo": "Returns ~20 results near a lat/long. Parameters: query, latitude, longitude, range (km, default 32)."
   },
   "endpoints": {
     "search": {
@@ -329,6 +332,10 @@
   },
   "example_usage": {
     "search_openclaw": "curl -s 'https://twitter154.p.rapidapi.com/search/search?query=openclaw&section=top&min_likes=100' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'",
+    "search_geo": "curl -s 'https://twitter154.p.rapidapi.com/search/geo?query=openclaw&latitude=40.7128&longitude=-74.0060&range=50' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'",
+    "trends_worldwide": "curl -s 'https://twitter154.p.rapidapi.com/trends/?woeid=1' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'",
+    "trends_london": "curl -s 'https://twitter154.p.rapidapi.com/trends/?woeid=44418' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'",
+    "trends_tokyo": "curl -s 'https://twitter154.p.rapidapi.com/trends/?woeid=1118370' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'",
     "tweet_details": "curl -s 'https://twitter154.p.rapidapi.com/tweet/details?tweet_id=2022046669710491991' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'",
     "tweet_replies": "curl -s 'https://twitter154.p.rapidapi.com/tweet/replies?tweet_id=2022046669710491991' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'",
     "user_tweets": "curl -s 'https://twitter154.p.rapidapi.com/user/tweets?username=openclawai&limit=10' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'",

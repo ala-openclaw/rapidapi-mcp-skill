@@ -1,17 +1,2 @@
-# Dependencies
-node_modules/
-
-# IDE
-.vscode/
-.idea/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Logs
-*.log
-
-# Environment
-.env
-.env.local
+# API Keys - DO NOT COMMIT
+# Store in ~/.config/openclaw/api-keys.json

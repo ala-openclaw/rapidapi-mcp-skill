@@ -31,6 +31,21 @@ This skill provides unified access to multiple RapidAPI-powered services. Each A
 
 > ⚠️ **SECURITY**: Never hardcode API keys in config files or SKILL.md. Use environment variables or local config. All `apis/*.json` files have `rapidapi_key: null` by default — set your key there or via env var.
 
+### API Key Storage
+
+**Location:** `~/.config/openclaw/api-keys.json`
+
+```json
+{
+  "rapidapi_key": "YOUR_KEY_HERE"
+}
+```
+
+**Usage in API calls:**
+1. First check `~/.config/openclaw/api-keys.json` for `rapidapi_key`
+2. If not found, use `RAPIDAPI_KEY` environment variable
+3. Only use `null` from config files as fallback
+
 ### Quick Start
 
 ```bash
@@ -298,6 +313,12 @@ User Request → Check known APIs → Not found?
 ---
 
 ## Example Usage
+
+### Key Loading Order
+When making API calls, the skill loads the key in this order:
+1. `~/.config/openclaw/api-keys.json` → `rapidapi_key`
+2. Environment variable `RAPIDAPI_KEY`
+3. Config file value (should be `null`)
 
 ### Search YouTube for "AI tutorials"
 ```

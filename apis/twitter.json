@@ -7,7 +7,9 @@
   "best_practices": {
     "search": "Use section=top for popular tweets, section=latest for recent. Filter with min_likes and min_retweets.",
     "language": "language=en filters English tweets. Use start_date/end_date for date range.",
-    "pagination": "Use continuation_token from response to get more results."
+    "pagination": "Use continuation_token from response to get more results.",
+    "min_retweets": "Note: min_retweets=N returns tweets with >= N retweets. A tweet with 970 RT will be excluded when min_retweets=1000.",
+    "replies": "The /tweet/replies endpoint returns results in 'replies' array, not 'results'."
   },
   "endpoints": {
     "search": {
@@ -213,6 +215,19 @@
       },
       "quota_cost": 1
     },
+    "tweet_details": {
+      "path": "/tweet/details",
+      "method": "GET",
+      "description": "Get single tweet details by ID",
+      "params": {
+        "tweet_id": {
+          "type": "string",
+          "required": true,
+          "description": "Tweet ID"
+        }
+      },
+      "quota_cost": 1
+    },
     "user_followers": {
       "path": "/user/followers",
       "method": "GET",
@@ -282,6 +297,25 @@
       "reply_count": "number",
       "quote_count": "number"
     },
+    "tweet_details": {
+      "tweet_id": "string",
+      "timestamp": "number (Unix timestamp)",
+      "creation_date": "string",
+      "text": "string",
+      "media_url": "array or null",
+      "video_url": "string or null",
+      "user": {...},
+      "favorite_count": "number",
+      "retweet_count": "number",
+      "reply_count": "number",
+      "quote_count": "number",
+      "views": "number",
+      "bookmark_count": "number"
+    },
+    "tweet_replies": {
+      "replies": "array of tweet objects (NOT 'results')",
+      "continuation_token": "string for pagination"
+    },
     "user_profile": {
       "avatar": {"image_url": "string"},
       "core": {"screen_name": "string", "name": "string", "created_at": "string"},
@@ -292,6 +326,8 @@
   },
   "example_usage": {
     "search_openclaw": "curl -s 'https://twitter154.p.rapidapi.com/search/search?query=openclaw&section=top&min_likes=100' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'",
+    "tweet_details": "curl -s 'https://twitter154.p.rapidapi.com/tweet/details?tweet_id=2022046669710491991' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'",
+    "tweet_replies": "curl -s 'https://twitter154.p.rapidapi.com/tweet/replies?tweet_id=2022046669710491991' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'",
     "user_tweets": "curl -s 'https://twitter154.p.rapidapi.com/user/tweets?username=openclawai&limit=10' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'",
     "user_profile": "curl -s 'https://twitter154.p.rapidapi.com/user/about?username=openclawai' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'"
   }

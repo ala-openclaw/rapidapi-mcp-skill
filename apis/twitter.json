@@ -116,10 +116,23 @@
         }
       },
       "quota_cost": 1
+    },
+    "user_about": {
+      "path": "/user/about",
+      "method": "GET",
+      "description": "Get user profile info (name, bio, location, etc.)",
+      "params": {
+        "username": {
+          "type": "string",
+          "required": true,
+          "description": "Twitter username (without @)"
+        }
+      },
+      "quota_cost": 1
     }
   },
   "response_format": {
-    "tweet": {
+    "search_tweet": {
       "tweet_id": "string",
       "creation_date": "string",
       "text": "string",
@@ -136,10 +149,18 @@
       "retweet_count": "number",
       "reply_count": "number",
       "quote_count": "number"
+    },
+    "user_profile": {
+      "avatar": {"image_url": "string"},
+      "core": {"screen_name": "string", "name": "string", "created_at": "string"},
+      "profile_banner": {"image_url": "string"},
+      "about_profile": {"location_accurate": "boolean"},
+      "verification": {"verified": "boolean", "is_blue_verified": "boolean"}
     }
   },
   "example_usage": {
     "search_openclaw": "curl -s 'https://twitter154.p.rapidapi.com/search/search?query=openclaw&section=top&min_likes=100' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'",
-    "user_tweets": "curl -s 'https://twitter154.p.rapidapi.com/user/tweets?username=openclawai&limit=10' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'"
+    "user_tweets": "curl -s 'https://twitter154.p.rapidapi.com/user/tweets?username=openclawai&limit=10' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'",
+    "user_profile": "curl -s 'https://twitter154.p.rapidapi.com/user/about?username=openclawai' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'"
   }
 }

@@ -539,7 +539,7 @@ rapidapi-mcp/
 
 ## Notes
 
-- This skill uses the shared RapidAPI key: `d95585deebmsh45ad264ed685814p11f522jsn6cbbfaaae2da`
+- This skill uses the RapidAPI key from: `~/.config/openclaw/api-keys.json` or environment variable `RAPIDAPI_KEY`
 - Some APIs may require additional RapidAPI subscriptions
 - Free tier limits apply to most APIs
 - Check individual API docs for rate limits and capabilities

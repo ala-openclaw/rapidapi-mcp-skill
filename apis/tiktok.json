@@ -1,25 +1,17 @@
 {
   "name": "TikTok",
   "host": "tiktok-api23.p.rapidapi.com",
-  "description": "TikTok API - video info, user profiles, trending",
+  "description": "TikTok API - user profiles, video stats",
   "rapidapi_key": null,
   "endpoints": {
-    "userProfile": {
-      "path": "/user",
-      "params": {"username": "string"},
-      "description": "Get TikTok user profile"
-    },
-    "userVideos": {
-      "path": "/videos",
-      "params": {"username": "string"},
-      "description": "Get user's TikTok videos"
-    },
-    "trending": {
-      "path": "/trending",
-      "params": {},
-      "description": "Get trending TikToks"
+    "userInfo": {
+      "path": "/api/user/info",
+      "params": {"uniqueId": "string"},
+      "description": "Get TikTok user profile and stats (works!)"
     }
   },
-  "subscription_url_pattern": "https://rapidapi.com/*/tiktok*",
+  "tested": true,
+  "test_result": "✅ khaby.lame: 160.4m followers, 2.6b likes",
+  "subscription_url_pattern": "https://rapidapi.com/*/tiktok-api23*",
   "subscription_required": true
 }

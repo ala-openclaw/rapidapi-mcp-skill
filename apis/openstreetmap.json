@@ -1,0 +1,20 @@
+{
+  "name": "OpenStreetMap",
+  "host": "osmnames.p.rapidapi.com",
+  "description": "OpenStreetMap geocoding - search places, get coordinates",
+  "rapidapi_key": null,
+  "endpoints": {
+    "geocode": {
+      "path": "/v1/search",
+      "params": {"q": "string", "limit": "10"},
+      "description": "Search for a place"
+    },
+    "reverse": {
+      "path": "/v1/reverse",
+      "params": {"lat": "number", "lon": "number"},
+      "description": "Reverse geocoding"
+    }
+  },
+  "subscription_url_pattern": "https://rapidapi.com/*/osmnames*",
+  "subscription_required": true
+}

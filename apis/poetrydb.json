@@ -1,0 +1,20 @@
+{
+  "name": "PoetryDB",
+  "host": "poetrydb.org",
+  "description": "Free poetry database",
+  "rapidapi_key": null,
+  "free": true,
+  "endpoints": {
+    "search": {
+      "path": "/title",
+      "params": {"title": "string"},
+      "description": "Search poems by title"
+    },
+    "author": {
+      "path": "/author",
+      "params": {"author": "string"},
+      "description": "Get poems by author"
+    }
+  },
+  "subscription_required": false
+}

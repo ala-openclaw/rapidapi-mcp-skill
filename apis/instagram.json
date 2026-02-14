@@ -1,0 +1,20 @@
+{
+  "name": "Instagram",
+  "host": "instagram-api16.p.rapidapi.com",
+  "description": "Instagram API - user profile, posts, stories",
+  "rapidapi_key": null,
+  "endpoints": {
+    "userProfile": {
+      "path": "/user/{username}",
+      "params": {"username": "string"},
+      "description": "Get user profile"
+    },
+    "userPosts": {
+      "path": "/user/{username}/posts",
+      "params": {"username": "string", "count": "12"},
+      "description": "Get user posts"
+    }
+  },
+  "subscription_url_pattern": "https://rapidapi.com/*/instagram-api16*",
+  "subscription_required": true
+}

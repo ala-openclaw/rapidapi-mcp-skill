@@ -1,0 +1,15 @@
+{
+  "name": "Streaming",
+  "host": "streaming-availability.p.rapidapi.com",
+  "description": "Find movies/TV shows on streaming platforms",
+  "rapidapi_key": null,
+  "endpoints": {
+    "search": {
+      "path": "/shows",
+      "params": {"title": "string", "country": "us"},
+      "description": "Search streaming availability"
+    }
+  },
+  "subscription_url_pattern": "https://rapidapi.com/*/streaming-availability*",
+  "subscription_required": true
+}

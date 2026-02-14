@@ -1,0 +1,15 @@
+{
+  "name": "Open-Meteo",
+  "host": "open-meteo-api.p.rapidapi.com",
+  "description": "Free weather API - no key required",
+  "rapidapi_key": null,
+  "free": true,
+  "endpoints": {
+    "forecast": {
+      "path": "/v1/forecast",
+      "params": {"latitude": "number", "longitude": "number", "current_weather": "true"},
+      "description": "Get weather forecast"
+    }
+  },
+  "subscription_required": false
+}

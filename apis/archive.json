@@ -1,0 +1,20 @@
+{
+  "name": "Archive.org",
+  "host": "archive-api.p.rapidapi.com",
+  "description": "Internet Archive - search books, movies, music, websites",
+  "rapidapi_key": null,
+  "endpoints": {
+    "search": {
+      "path": "/Advanced Search",
+      "params": {"query": "string"},
+      "description": "Search archive.org"
+    },
+    "metadata": {
+      "path": "/metadata/{identifier}",
+      "params": {"identifier": "string"},
+      "description": "Get item metadata"
+    }
+  },
+  "subscription_url_pattern": "https://rapidapi.com/*/archive-api*",
+  "subscription_required": true
+}

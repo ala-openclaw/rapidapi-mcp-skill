@@ -1,0 +1,15 @@
+{
+  "name": "Nobel Prize",
+  "host": "nobelprize.p.rapidapi.com",
+  "description": "Nobel Prize winners database",
+  "rapidapi_key": null,
+  "endpoints": {
+    "prizes": {
+      "path": "/nobelPrizes",
+      "params": {"nobelPrizeCategory": "physics", "year": "2023"},
+      "description": "Get Nobel prizes"
+    }
+  },
+  "subscription_url_pattern": "https://rapidapi.com/*/nobelprize*",
+  "subscription_required": true
+}

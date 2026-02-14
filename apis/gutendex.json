@@ -1,0 +1,15 @@
+{
+  "name": "Gutendex",
+  "host": "gutendex.com",
+  "description": "Free ebooks from Project Gutenberg",
+  "rapidapi_key": null,
+  "free": true,
+  "endpoints": {
+    "books": {
+      "path": "/books",
+      "params": {"search": "string"},
+      "description": "Search books"
+    }
+  },
+  "subscription_required": false
+}

@@ -1,0 +1,20 @@
+{
+  "name": "OpenLibrary",
+  "host": "openlibrary.org",
+  "description": "Free book search - search by title, author, ISBN",
+  "rapidapi_key": null,
+  "free": true,
+  "endpoints": {
+    "search": {
+      "path": "/search.json",
+      "params": {"q": "string", "limit": "10"},
+      "description": "Search books"
+    },
+    "works": {
+      "path": "/works/{id}.json",
+      "params": {"id": "string"},
+      "description": "Get book details"
+    }
+  },
+  "subscription_required": false
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Harry Potter",
+  "host": "harry-potter-api.p.rapidapi.com",
+  "description": "Harry Potter characters, spells, houses",
+  "rapidapi_key": null,
+  "endpoints": {
+    "characters": {
+      "path": "/characters",
+      "params": {},
+      "description": "Get all characters"
+    },
+    "spells": {
+      "path": "/spells",
+      "params": {},
+      "description": "Get all spells"
+    }
+  },
+  "subscription_url_pattern": "https://rapidapi.com/*/harry-potter-api*",
+  "subscription_required": true
+}

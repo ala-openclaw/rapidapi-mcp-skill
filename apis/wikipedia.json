@@ -1,0 +1,20 @@
+{
+  "name": "Wikipedia",
+  "host": "wikipedia-api.p.rapidapi.com",
+  "description": "Wikipedia API - search and get article content",
+  "rapidapi_key": null,
+  "endpoints": {
+    "search": {
+      "path": "/api/search",
+      "params": {"q": "string", "limit": "10"},
+      "description": "Search Wikipedia"
+    },
+    "page": {
+      "path": "/api/page/{title}",
+      "params": {"title": "string"},
+      "description": "Get article content"
+    }
+  },
+  "subscription_url_pattern": "https://rapidapi.com/*/wikipedia-api*",
+  "subscription_required": true
+}

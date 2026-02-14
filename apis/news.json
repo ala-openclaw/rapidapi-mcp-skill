@@ -1,0 +1,15 @@
+{
+  "name": "News",
+  "host": "newsdata.io",
+  "description": "News API - get latest news by category, country, keyword",
+  "rapidapi_key": null,
+  "api_key_field": "apikey",
+  "endpoints": {
+    "latest": {
+      "path": "/api/1/news",
+      "params": {"apikey": "string", "language": "en"},
+      "description": "Get latest news"
+    }
+  },
+  "subscription_required": false
+}

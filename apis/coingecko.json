@@ -1,0 +1,25 @@
+{
+  "name": "CoinGecko",
+  "host": "coingecko-api.p.rapidapi.com",
+  "description": "Free crypto prices - CoinGecko API (free tier available)",
+  "rapidapi_key": null,
+  "endpoints": {
+    "coinsMarkets": {
+      "path": "/coins/markets",
+      "params": {"vs_currency": "eur", "order": "market_cap_desc", "per_page": "50"},
+      "description": "Get top coins by market cap"
+    },
+    "coinData": {
+      "path": "/coins/{id}",
+      "params": {"id": "string", "localization": "false"},
+      "description": "Get coin details"
+    },
+    "trending": {
+      "path": "/search/trending",
+      "params": {},
+      "description": "Get trending coins"
+    }
+  },
+  "subscription_url_pattern": "https://rapidapi.com/*/coingecko-api*",
+  "subscription_required": false
+}

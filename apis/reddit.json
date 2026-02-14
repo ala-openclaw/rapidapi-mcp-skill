@@ -1,0 +1,25 @@
+{
+  "name": "Reddit",
+  "host": "reddit23.p.rapidapi.com",
+  "description": "Reddit API - Subreddits, posts, comments",
+  "rapidapi_key": null,
+  "endpoints": {
+    "subredditPosts": {
+      "path": "/r/{subreddit}",
+      "params": {"subreddit": "string", "limit": "25"},
+      "description": "Get posts from a subreddit"
+    },
+    "postComments": {
+      "path": "/post/comments",
+      "params": {"post_id": "string"},
+      "description": "Get comments on a post"
+    },
+    "subredditInfo": {
+      "path": "/r/{subreddit}/about",
+      "params": {"subreddit": "string"},
+      "description": "Get subreddit info"
+    }
+  },
+  "subscription_url_pattern": "https://rapidapi.com/*/reddit23*",
+  "subscription_required": true
+}

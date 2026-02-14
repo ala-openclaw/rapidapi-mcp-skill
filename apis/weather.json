@@ -1,0 +1,20 @@
+{
+  "name": "Weather",
+  "host": "weatherapi-com.p.rapidapi.com",
+  "description": "Weather API - current weather, forecast, astronomy",
+  "rapidapi_key": null,
+  "endpoints": {
+    "current": {
+      "path": "/current.json",
+      "params": {"q": "string"},
+      "description": "Get current weather"
+    },
+    "forecast": {
+      "path": "/forecast.json",
+      "params": {"q": "string", "days": "3"},
+      "description": "Get forecast"
+    }
+  },
+  "subscription_url_pattern": "https://rapidapi.com/*/weatherapi-com*",
+  "subscription_required": true
+}

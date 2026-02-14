@@ -1,0 +1,20 @@
+{
+  "name": "Wikidata",
+  "host": "wikidata.p.rapidapi.com",
+  "description": "Wikidata - structured data from Wikipedia",
+  "rapidapi_key": null,
+  "endpoints": {
+    "search": {
+      "path": "/api.php",
+      "params": {"search": "string", "limit": "10"},
+      "description": "Search Wikidata entities"
+    },
+    "entity": {
+      "path": "/api.php",
+      "params": {"ids": "string"},
+      "description": "Get entity data by ID"
+    }
+  },
+  "subscription_url_pattern": "https://rapidapi.com/*/wikidata*",
+  "subscription_required": true
+}

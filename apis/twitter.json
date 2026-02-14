@@ -1,0 +1,25 @@
+{
+  "name": "Twitter",
+  "host": "twitter154.p.rapidapi.com",
+  "description": "Twitter API v1.54 - Get user info, tweets, trends",
+  "rapidapi_key": null,
+  "endpoints": {
+    "userTweets": {
+      "path": "/user-tweets",
+      "params": {"username": "string", "count": "20"},
+      "description": "Get recent tweets by username"
+    },
+    "userByScreenName": {
+      "path": "/user-by-screen-name",
+      "params": {"screen_name": "string"},
+      "description": "Get user profile by screen name"
+    },
+    "trending": {
+      "path": "/trending",
+      "params": {"woeid": "1"},
+      "description": "Get trending topics"
+    }
+  },
+  "subscription_url_pattern": "https://rapidapi.com/*/twitter154*",
+  "subscription_required": true
+}

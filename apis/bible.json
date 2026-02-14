@@ -1,0 +1,15 @@
+{
+  "name": "Bible",
+  "host": "bible-api.com",
+  "description": "Free Bible API - get verses, chapters",
+  "rapidapi_key": null,
+  "free": true,
+  "endpoints": {
+    "verse": {
+      "path": "/verses/niv/{reference}",
+      "params": {"reference": "string"},
+      "description": "Get verse by reference"
+    }
+  },
+  "subscription_required": false
+}

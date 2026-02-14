@@ -1,0 +1,20 @@
+{
+  "name": "YouTube Captions",
+  "host": "youtube-captions-transcript-subtitles-video-combiner.p.rapidapi.com",
+  "description": "YouTube transcripts, captions, subtitles, and video combiner",
+  "rapidapi_key": null,
+  "endpoints": {
+    "transcript": {
+      "path": "/transcript",
+      "params": {"video_id": "string"},
+      "description": "Get transcript for a YouTube video"
+    },
+    "captions": {
+      "path": "/captions",
+      "params": {"video_id": "string"},
+      "description": "Get captions for a YouTube video"
+    }
+  },
+  "subscription_url_pattern": "https://rapidapi.com/*/youtube-captions*",
+  "subscription_required": true
+}

@@ -1,17 +1,115 @@
 {
   "name": "TikTok",
   "host": "tiktok-api23.p.rapidapi.com",
-  "description": "TikTok API - user profiles, video stats",
+  "description": "TikTok API - user profiles, videos, trending, music, search",
   "rapidapi_key": null,
   "endpoints": {
     "userInfo": {
       "path": "/api/user/info",
       "params": {"uniqueId": "string"},
-      "description": "Get TikTok user profile and stats (works!)"
+      "description": "Get TikTok user profile and stats"
+    },
+    "userInfoById": {
+      "path": "/api/user/info-by-id",
+      "params": {"userId": "string"},
+      "description": "Get user info by ID"
+    },
+    "userPosts": {
+      "path": "/api/user/posts",
+      "params": {"uniqueId": "string", "count": "number"},
+      "description": "Get user's posts"
+    },
+    "userPopularPosts": {
+      "path": "/api/user/popular-posts",
+      "params": {"uniqueId": "string"},
+      "description": "Get user's popular posts"
+    },
+    "userFollowers": {
+      "path": "/api/user/followers",
+      "params": {"uniqueId": "string", "count": "number"},
+      "description": "Get user's followers"
+    },
+    "userFollowings": {
+      "path": "/api/user/followings",
+      "params": {"uniqueId": "string", "count": "number"},
+      "description": "Get user's following"
+    },
+    "userLikedPosts": {
+      "path": "/api/user/liked-posts",
+      "params": {"uniqueId": "string"},
+      "description": "Get user's liked posts"
+    },
+    "trendingVideo": {
+      "path": "/api/trending/video",
+      "params": {"count": "number"},
+      "description": "Get trending videos"
+    },
+    "trendingHashtag": {
+      "path": "/api/trending/hashtag",
+      "params": {},
+      "description": "Get trending hashtags"
+    },
+    "trendingSong": {
+      "path": "/api/trending/song",
+      "params": {},
+      "description": "Get trending songs"
+    },
+    "musicInfo": {
+      "path": "/api/music/info",
+      "params": {"musicId": "string"},
+      "description": "Get music/sound info"
+    },
+    "musicPosts": {
+      "path": "/api/music/posts",
+      "params": {"musicId": "string", "count": "number"},
+      "description": "Get videos with specific music"
+    },
+    "searchAccount": {
+      "path": "/api/search/account",
+      "params": {"keyword": "string"},
+      "description": "Search for accounts"
+    },
+    "searchVideo": {
+      "path": "/api/search/video",
+      "params": {"keyword": "string", "count": "number"},
+      "description": "Search for videos"
+    },
+    "postDetail": {
+      "path": "/api/post/detail",
+      "params": {"postId": "string"},
+      "description": "Get post/video details"
+    },
+    "postComments": {
+      "path": "/api/post/comments",
+      "params": {"postId": "string", "count": "number"},
+      "description": "Get comments on a post"
+    },
+    "postTrending": {
+      "path": "/api/post/trending",
+      "params": {"count": "number"},
+      "description": "Get trending posts"
+    },
+    "challengeInfo": {
+      "path": "/api/challenge/info",
+      "params": {"challengeId": "string"},
+      "description": "Get challenge/hashtag info"
+    },
+    "challengePosts": {
+      "path": "/api/challenge/posts",
+      "params": {"challengeId": "string", "count": "number"},
+      "description": "Get videos for a challenge"
+    },
+    "downloadVideo": {
+      "path": "/api/download/video",
+      "params": {"videoId": "string"},
+      "description": "Download video"
+    },
+    "downloadMusic": {
+      "path": "/api/download/music",
+      "params": {"musicId": "string"},
+      "description": "Download music/sound"
     }
   },
-  "tested": true,
-  "test_result": "✅ khaby.lame: 160.4m followers, 2.6b likes",
   "subscription_url_pattern": "https://rapidapi.com/*/tiktok-api23*",
   "subscription_required": true
 }

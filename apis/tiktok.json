@@ -1,6 +1,6 @@
 {
   "name": "TikTok",
-  "host": "TODO: add host from RapidAPI",
+  "host": "tiktok-api23.p.rapidapi.com",
   "description": "TikTok API - video info, user profiles, trending",
   "rapidapi_key": null,
   "endpoints": {
@@ -21,6 +21,5 @@
     }
   },
   "subscription_url_pattern": "https://rapidapi.com/*/tiktok*",
-  "subscription_required": true,
-  "note": "Host not set yet - get from RapidAPI dashboard"
+  "subscription_required": true
 }

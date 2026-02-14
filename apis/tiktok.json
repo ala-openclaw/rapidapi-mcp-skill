@@ -1,7 +1,7 @@
 {
   "name": "TikTok",
   "host": "tiktok-api23.p.rapidapi.com",
-  "description": "TikTok API - user profiles, videos, trending, music, search",
+  "description": "TikTok API - user profiles, videos, trending, music, search, comments, challenges, live, shop",
   "rapidapi_key": null,
   "endpoints": {
     "userInfo": {
@@ -14,6 +14,11 @@
       "params": {"userId": "string"},
       "description": "Get user info by ID"
     },
+    "userInfoWithRegion": {
+      "path": "/api/user/info-with-region",
+      "params": {"uniqueId": "string", "region": "string"},
+      "description": "Get user info with region data"
+    },
     "userPosts": {
       "path": "/api/user/posts",
       "params": {"uniqueId": "string", "count": "number"},
@@ -23,6 +28,11 @@
       "path": "/api/user/popular-posts",
       "params": {"uniqueId": "string"},
       "description": "Get user's popular posts"
+    },
+    "userOldestPosts": {
+      "path": "/api/user/oldest-posts",
+      "params": {"uniqueId": "string"},
+      "description": "Get user's oldest posts"
     },
     "userFollowers": {
       "path": "/api/user/followers",
@@ -39,6 +49,21 @@
       "params": {"uniqueId": "string"},
       "description": "Get user's liked posts"
     },
+    "userPlaylist": {
+      "path": "/api/user/playlist",
+      "params": {"uniqueId": "string"},
+      "description": "Get user's playlists"
+    },
+    "userRepost": {
+      "path": "/api/user/repost",
+      "params": {"uniqueId": "string"},
+      "description": "Get user's reposts"
+    },
+    "userStory": {
+      "path": "/api/user/story",
+      "params": {"uniqueId": "string"},
+      "description": "Get user's stories"
+    },
     "trendingVideo": {
       "path": "/api/trending/video",
       "params": {"count": "number"},
@@ -54,15 +79,65 @@
       "params": {},
       "description": "Get trending songs"
     },
-    "musicInfo": {
-      "path": "/api/music/info",
-      "params": {"musicId": "string"},
-      "description": "Get music/sound info"
+    "trendingCreator": {
+      "path": "/api/trending/creator",
+      "params": {},
+      "description": "Get trending creators"
     },
-    "musicPosts": {
-      "path": "/api/music/posts",
-      "params": {"musicId": "string", "count": "number"},
-      "description": "Get videos with specific music"
+    "trendingKeyword": {
+      "path": "/api/trending/keyword",
+      "params": {},
+      "description": "Get trending keywords"
+    },
+    "trendingKeywordPosts": {
+      "path": "/api/trending/keyword/posts",
+      "params": {"keyword": "string"},
+      "description": "Get posts for trending keyword"
+    },
+    "trendingKeywordSentence": {
+      "path": "/api/trending/keyword/sentence",
+      "params": {},
+      "description": "Get trending keyword sentences"
+    },
+    "trendingAds": {
+      "path": "/api/trending/ads",
+      "params": {},
+      "description": "Get trending ads"
+    },
+    "trendingAdsDetail": {
+      "path": "/api/trending/ads/detail",
+      "params": {"adId": "string"},
+      "description": "Get ad details"
+    },
+    "trendingTopProducts": {
+      "path": "/api/trending/top-products",
+      "params": {},
+      "description": "Get trending products"
+    },
+    "trendingTopProductsMetrics": {
+      "path": "/api/trending/top-products/metrics",
+      "params": {"productId": "string"},
+      "description": "Get product metrics"
+    },
+    "trendingTopProductsDetail": {
+      "path": "/api/trending/top-products/detail",
+      "params": {"productId": "string"},
+      "description": "Get product details"
+    },
+    "trendingCommercialMusicLibrary": {
+      "path": "/api/trending/commercial-music-library",
+      "params": {},
+      "description": "Get commercial music library"
+    },
+    "trendingCommercialMusicPlaylist": {
+      "path": "/api/trending/commercial-music-library/playlist",
+      "params": {},
+      "description": "Get commercial music playlists"
+    },
+    "trendingCommercialMusicPlaylistDetail": {
+      "path": "/api/trending/commercial-music-library/playlist/detail",
+      "params": {"playlistId": "string"},
+      "description": "Get playlist details"
     },
     "searchAccount": {
       "path": "/api/search/account",
@@ -74,6 +149,21 @@
       "params": {"keyword": "string", "count": "number"},
       "description": "Search for videos"
     },
+    "searchGeneral": {
+      "path": "/api/search/general",
+      "params": {"keyword": "string"},
+      "description": "General search"
+    },
+    "searchLive": {
+      "path": "/api/search/live",
+      "params": {"keyword": "string"},
+      "description": "Search live videos"
+    },
+    "searchOthersSearchedFor": {
+      "path": "/api/search/others-searched-for",
+      "params": {"keyword": "string"},
+      "description": "What others searched for"
+    },
     "postDetail": {
       "path": "/api/post/detail",
       "params": {"postId": "string"},
@@ -84,10 +174,30 @@
       "params": {"postId": "string", "count": "number"},
       "description": "Get comments on a post"
     },
+    "postCommentReplies": {
+      "path": "/api/post/comment/replies",
+      "params": {"commentId": "string"},
+      "description": "Get replies to a comment"
+    },
     "postTrending": {
       "path": "/api/post/trending",
       "params": {"count": "number"},
       "description": "Get trending posts"
+    },
+    "postDiscover": {
+      "path": "/api/post/discover",
+      "params": {},
+      "description": "Discover posts"
+    },
+    "postExplore": {
+      "path": "/api/post/explore",
+      "params": {},
+      "description": "Explore posts"
+    },
+    "postRelated": {
+      "path": "/api/post/related",
+      "params": {"postId": "string"},
+      "description": "Get related posts"
     },
     "challengeInfo": {
       "path": "/api/challenge/info",
@@ -98,6 +208,71 @@
       "path": "/api/challenge/posts",
       "params": {"challengeId": "string", "count": "number"},
       "description": "Get videos for a challenge"
+    },
+    "collectionInfo": {
+      "path": "/api/collection/info",
+      "params": {"collectionId": "string"},
+      "description": "Get collection info"
+    },
+    "collectionPosts": {
+      "path": "/api/collection/posts",
+      "params": {"collectionId": "string"},
+      "description": "Get posts in collection"
+    },
+    "musicInfo": {
+      "path": "/api/music/info",
+      "params": {"musicId": "string"},
+      "description": "Get music/sound info"
+    },
+    "musicPosts": {
+      "path": "/api/music/posts",
+      "params": {"musicId": "string", "count": "number"},
+      "description": "Get videos with specific music"
+    },
+    "musicUnlimitedSounds": {
+      "path": "/api/music/unlimited-sounds",
+      "params": {},
+      "description": "Get unlimited sounds"
+    },
+    "effectInfo": {
+      "path": "/api/effect/info",
+      "params": {"effectId": "string"},
+      "description": "Get effect info"
+    },
+    "effectPosts": {
+      "path": "/api/effect/posts",
+      "params": {"effectId": "string"},
+      "description": "Get videos with effect"
+    },
+    "placeInfo": {
+      "path": "/api/place/info",
+      "params": {"placeId": "string"},
+      "description": "Get place info"
+    },
+    "placePosts": {
+      "path": "/api/place/posts",
+      "params": {"placeId": "string"},
+      "description": "Get posts for place"
+    },
+    "liveCategory": {
+      "path": "/api/live/category",
+      "params": {},
+      "description": "Get live categories"
+    },
+    "liveCheckAlive": {
+      "path": "/api/live/check-alive",
+      "params": {"roomId": "string"},
+      "description": "Check if live is still active"
+    },
+    "liveStream": {
+      "path": "/api/live/stream",
+      "params": {"roomId": "string"},
+      "description": "Get live stream info"
+    },
+    "shopProduct": {
+      "path": "/api/shop/product",
+      "params": {"productId": "string"},
+      "description": "Get shop product info"
     },
     "downloadVideo": {
       "path": "/api/download/video",

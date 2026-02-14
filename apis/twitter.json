@@ -1,135 +1,145 @@
 {
-  "name": "Twitter",
-  "host": "twitter241.p.rapidapi.com",
-  "description": "Twitter/X API - user profiles, tweets, followers, search, comments",
+  "name": "Twitter (twitter154)",
+  "host": "twitter154.p.rapidapi.com",
+  "description": "Twitter/X API - search tweets, user profiles, followers, following",
   "rapidapi_key": null,
+  "subscription_url": "https://rapidapi.com/dschlenk/api/twitter154",
+  "best_practices": {
+    "search": "Use section=top for popular tweets, section=latest for recent. Filter with min_likes and min_retweets.",
+    "language": "language=en filters English tweets. Use start_date/end_date for date range.",
+    "pagination": "Use continuation_token from response to get more results."
+  },
   "endpoints": {
-    "getUserByUsername": {
-      "path": "/user/by/username",
-      "params": {"username": "string"},
-      "description": "Get user profile by username"
+    "search": {
+      "path": "/search/search",
+      "method": "GET",
+      "description": "Search tweets by query",
+      "params": {
+        "query": {
+          "type": "string",
+          "required": true,
+          "description": "Search query (e.g., openclaw)"
+        },
+        "section": {
+          "type": "string",
+          "required": false,
+          "description": "top or latest"
+        },
+        "limit": {
+          "type": "number",
+          "required": false,
+          "description": "Number of results (default: 20)"
+        },
+        "language": {
+          "type": "string",
+          "required": false,
+          "description": "Filter by language (en, es, etc.)"
+        },
+        "start_date": {
+          "type": "string",
+          "required": false,
+          "description": "Start date (YYYY-MM-DD)"
+        },
+        "end_date": {
+          "type": "string",
+          "required": false,
+          "description": "End date (YYYY-MM-DD)"
+        },
+        "min_likes": {
+          "type": "number",
+          "required": false,
+          "description": "Minimum likes"
+        },
+        "min_retweets": {
+          "type": "number",
+          "required": false,
+          "description": "Minimum retweets"
+        },
+        "media_type": {
+          "type": "string",
+          "required": false,
+          "description": "Filter by media type (video, photo)"
+        }
+      },
+      "quota_cost": 1
     },
-    "getUsersByIds": {
-      "path": "/user/by/id",
-      "params": {"ids": "string"},
-      "description": "Get users by IDs"
-    },
-    "getUsersByIdsV2": {
-      "path": "/user/by/id/v2",
-      "params": {"ids": "string"},
-      "description": "Get users by IDs V2"
-    },
-    "getUserReplies": {
-      "path": "/user/replies",
-      "params": {"username": "string", "count": "number"},
-      "description": "Get user's replies"
-    },
-    "getUserRepliesV2": {
-      "path": "/user/replies/v2",
-      "params": {"username": "string", "count": "number"},
-      "description": "Get user's replies V2"
-    },
-    "getUserMedia": {
-      "path": "/user/media",
-      "params": {"username": "string", "count": "number"},
-      "description": "Get user's media posts"
-    },
-    "getUserTweets": {
+    "user_tweets": {
       "path": "/user/tweets",
-      "params": {"username": "string", "count": "number"},
-      "description": "Get user's tweets"
+      "method": "GET",
+      "description": "Get user's tweets",
+      "params": {
+        "username": {
+          "type": "string",
+          "required": true,
+          "description": "Twitter username (without @)"
+        },
+        "limit": {
+          "type": "number",
+          "required": false,
+          "description": "Number of tweets (max 100)"
+        }
+      },
+      "quota_cost": 1
     },
-    "getUserFollowings": {
-      "path": "/user/following",
-      "params": {"username": "string", "count": "number"},
-      "description": "Get user's following list"
-    },
-    "getUserFollowingIds": {
-      "path": "/user/following/ids",
-      "params": {"username": "string"},
-      "description": "Get IDs of users someone follows"
-    },
-    "getUserFollowers": {
+    "user_followers": {
       "path": "/user/followers",
-      "params": {"username": "string", "count": "number"},
-      "description": "Get user's followers"
+      "method": "GET",
+      "description": "Get user's followers",
+      "params": {
+        "username": {
+          "type": "string",
+          "required": true,
+          "description": "Twitter username (without @)"
+        },
+        "limit": {
+          "type": "number",
+          "required": false,
+          "description": "Number of followers"
+        }
+      },
+      "quota_cost": 1
     },
-    "getUserFollowerIds": {
-      "path": "/user/followers/ids",
-      "params": {"username": "string"},
-      "description": "Get IDs of user's followers"
-    },
-    "getUserVerifiedFollowers": {
-      "path": "/user/followers/verified",
-      "params": {"username": "string"},
-      "description": "Get user's verified followers"
-    },
-    "getHighlights": {
-      "path": "/user/highlights",
-      "params": {"username": "string"},
-      "description": "Get user's highlights"
-    },
-    "getAboutAccount": {
-      "path": "/user/about",
-      "params": {"username": "string"},
-      "description": "Get about account info"
-    },
-    "getPostComments": {
-      "path": "/post/comments",
-      "params": {"postId": "string"},
-      "description": "Get comments on a post"
-    },
-    "getPostCommentsV2": {
-      "path": "/post/comments/v2",
-      "params": {"postId": "string"},
-      "description": "Get comments on a post V2"
-    },
-    "getPostQuotes": {
-      "path": "/post/quotes",
-      "params": {"postId": "string"},
-      "description": "Get quoted tweets of a post"
-    },
-    "getPostRetweets": {
-      "path": "/post/retweets",
-      "params": {"postId": "string"},
-      "description": "Get retweets of a post"
-    },
-    "getTweetDetailsV2": {
-      "path": "/tweet/details/v2",
-      "params": {"tweetId": "string"},
-      "description": "Get tweet details V2"
-    },
-    "getTweetsDetailsByIds": {
-      "path": "/tweets/details",
-      "params": {"ids": "string"},
-      "description": "Get tweets details by IDs"
-    },
-    "getTweetsDetailsByIdsV2": {
-      "path": "/tweets/details/v2",
-      "params": {"ids": "string"},
-      "description": "Get tweets details by IDs V2"
-    },
-    "searchTwitter": {
-      "path": "/search",
-      "params": {"query": "string", "count": "number"},
-      "description": "Search Twitter"
-    },
-    "searchTwitterV2": {
-      "path": "/search/v2",
-      "params": {"query": "string", "count": "number"},
-      "description": "Search Twitter V2"
-    },
-    "searchTwitterV3": {
-      "path": "/search/v3",
-      "params": {"query": "string", "count": "number"},
-      "description": "Search Twitter V3"
-    },
-    "autocomplete": {
-      "path": "/search/autocomplete",
-      "params": {"query": "string"},
-      "description": "Autocomplete search"
+    "user_following": {
+      "path": "/user/following",
+      "method": "GET",
+      "description": "Get users that a user follows",
+      "params": {
+        "username": {
+          "type": "string",
+          "required": true,
+          "description": "Twitter username (without @)"
+        },
+        "limit": {
+          "type": "number",
+          "required": false,
+          "description": "Number of following"
+        }
+      },
+      "quota_cost": 1
     }
   },
-  "subscription_url_pattern": "https://rapidapi.com/*/twitter241*",
-  "subscription_required": true
+  "response_format": {
+    "tweet": {
+      "tweet_id": "string",
+      "creation_date": "string",
+      "text": "string",
+      "media_url": "array",
+      "video_url": "string or null",
+      "user": {
+        "username": "string",
+        "name": "string",
+        "follower_count": "number",
+        "following_count": "number",
+        "is_verified": "boolean"
+      },
+      "favorite_count": "number",
+      "retweet_count": "number",
+      "reply_count": "number",
+      "quote_count": "number"
+    }
+  },
+  "example_usage": {
+    "search_openclaw": "curl -s 'https://twitter154.p.rapidapi.com/search/search?query=openclaw&section=top&min_likes=100' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'",
+    "user_tweets": "curl -s 'https://twitter154.p.rapidapi.com/user/tweets?username=openclawai&limit=10' -H 'X-RapidAPI-Key: YOUR_KEY' -H 'X-RapidAPI-Host: twitter154.p.rapidapi.com'"
+  }
 }

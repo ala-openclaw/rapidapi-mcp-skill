@@ -28,7 +28,8 @@ This skill provides unified access to multiple RapidAPI-powered services. Each A
 
 1. A RapidAPI account (https://rapidapi.com)
 2. API keys for desired services
-3. Basic API key: `d95585deebmsh45ad264ed685814p11f522jsn6cbbfaaae2da`
+
+> ⚠️ **SECURITY**: Never hardcode API keys in config files or SKILL.md. Use environment variables or local config. All `apis/*.json` files have `rapidapi_key: null` by default — set your key there or via env var.
 
 ### Quick Start
 

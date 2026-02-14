@@ -110,7 +110,7 @@
     "download_json": {
       "path": "/download-json/{videoId}",
       "method": "GET",
-      "description": "Download video captions in JSON format with start time, duration, and text",
+      "description": "Download video captions in JSON format with start time, duration, and text. Most videos have 'en' available - try directly without checking language-list first to save API calls.",
       "params": {
         "videoId": {
           "type": "string",
@@ -121,7 +121,7 @@
         "language": {
           "type": "string",
           "required": true,
-          "description": "Language code (e.g., en, de, es). Get available languages from /language-list endpoint"
+          "description": "Language code (e.g., en, de, es). Start with 'en' - most videos have English subtitles. Only use /language-list if 'en' returns 404."
         },
         "response_mode": {
           "type": "string",

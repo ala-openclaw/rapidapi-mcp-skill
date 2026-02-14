@@ -56,6 +56,7 @@ When the user requests data from a specific service, use this prompt to route to
 - Books → `books` - Search German books, by genre, date
 - Wikipedia → `wikipedia` - German Wikipedia articles and search
 - OpenStreetMap → `openstreetmap` - Geocoding, locations, maps
+- Open Library → `openlibrary` - Book search by title, author, ISBN
 - Wikidata → `wikidata` - Structured facts and entities
 - Archive → `archive` - Internet Archive (books, media, web archives)
 - CoinGecko → `coingecko` - Free Crypto data (prices, trending, market cap)
@@ -199,6 +200,11 @@ Find APIs for unknown requests. Searches RapidAPI for relevant APIs when no know
 - **API:** nominatim.openstreetmap.org (free, no key)
 - **Endpoints:** search, reverse, lookup
 - **Use Case:** Geocoding, location search
+
+### Open Library
+- **API:** openlibrary.org (free, no key)
+- **Endpoints:** search, book_by_isbn, author, cover
+- **Use Case:** Book search, ISBN lookup, covers
 
 ### Wikidata
 - **API:** wikidata.org (free, no key needed)

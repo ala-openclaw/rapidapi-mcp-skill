@@ -88,6 +88,8 @@ When the user requests data from a specific service, use this prompt to route to
 > 
 > **🔑 NEEDS RAPIDAPI KEY:**
 > - YouTube → `youtube` - Videos, channels, trending
+> - YouTube (YT-API) → `yt-api` - Extended YouTube API with download, comments, hashtags, suggestions
+> - YouTube Captions → `youtube-captions` - Captions, transcripts, subtitles in multiple languages
 > - Twitter/X → `twitter` - Tweets, profiles, trends
 > - Reddit → `reddit` - Posts, comments, subreddits
 > - News → `news` - Latest headlines
@@ -225,6 +227,44 @@ Instead of full page snapshots, use targeted selectors when possible.
 | Name Details | GET | `/v1/name/` | `id` (string, required) - Name ID |
 | Video Details | GET | `/v1/video/` | `id` (string, required) - Video ID |
 | News Details | GET | `/v1/news/` | `id` (string, required) - News ID |
+
+### YouTube (YT-API)
+- **Host:** yt-api.p.rapidapi.com
+- **Description:** YouTube Data + Download API - videos, channels, search, trending, playlists, comments, download URLs
+- **Documentation:** https://rapidapi.com/ytjar/api/yt-api
+- **Pricing:** Basic (Free), Pro ($51/mo), Ultra ($144/mo), Mega ($240/mo)
+
+| Endpoint | Method | Path | Parameters |
+|----------|--------|------|------------|
+| Video Info | GET | `/video` | `id` (required), `pretty`, `geo`, `lang` |
+| Related Videos | GET | `/related` | `id` (required), `token`, `pretty`, `geo`, `lang` |
+| Trending | GET | `/trending` | `geo`, `type` (now/music/games/movies), `pretty`, `lang` |
+| Search | GET | `/search` | `query` (required), `type`, `sort`, `duration`, `upload_date`, `features`, `token`, `pretty`, `geo`, `lang` |
+| Playlist | GET | `/playlist` | `id` (required), `token`, `pretty`, `geo`, `lang` |
+| Channel | GET | `/channel` | `id` (required), `sort_by` (newest/oldest/popular), `token`, `pretty`, `geo`, `lang` |
+| Comments | GET | `/comments` | `id` (required), `token`, `pretty`, `geo`, `lang` |
+| Hashtag | GET | `/hashtag` | `id` (required), `pretty`, `geo`, `lang` |
+| Resolve URL | GET | `/resolve` | `url` (required), `pretty` |
+| Download/Stream | GET | `/dl` | `id` (required), `cgeo`, `pretty` (quota: 6 units) |
+| Home Feed | GET | `/home` | `pretty`, `geo`, `lang` |
+| Suggestions | GET | `/suggest` | `query` (required), `pretty` |
+| Hype | GET | `/hype` | `pretty`, `geo`, `lang` |
+
+### YouTube Captions
+- **Host:** youtube-captions-transcript-subtitles-video-combiner.p.rapidapi.com
+- **Description:** YouTube Captions, Transcripts, Subtitles - Download in SRT, VTT, XML, JSON; translate to any language
+- **Documentation:** https://rapidapi.com/nikzeferis/api/youtube-captions-transcript-subtitles-video-combiner
+- **Pricing:** Basic (Free), Pro ($3.87/mo), Ultra ($13.87/mo), Mega ($34.98/mo)
+
+| Endpoint | Method | Path | Parameters |
+|----------|--------|------|------------|
+| Video Info | GET | `/get-video-info/{videoId}` | `videoId` (required), `format`, `response_mode` |
+| Language List | GET | `/language-list/{videoId}` | `videoId` (required), `format`, `response_mode` |
+| Download SRT | GET | `/download-srt/{videoId}` | `videoId`, `language` (required), `response_mode` |
+| Download XML | GET | `/download-xml/{videoId}` | `videoId`, `language` (required), `response_mode` |
+| Download JSON | GET | `/download-json/{videoId}` | `videoId`, `language` (required), `response_mode` |
+| Download WebVTT | GET | `/download-webvtt/{videoId}` | `videoId`, `language` (required), `response_mode` |
+| Download All | GET | `/download-all/{videoId}` | `videoId`, `format_subtitle`, `format_answer`, `response_mode` |
 
 ### YouTube
 - **Host:** youtube-v31.p.rapidapi.com

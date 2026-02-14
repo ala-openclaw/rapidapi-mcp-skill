@@ -1,20 +1,210 @@
 {
   "name": "YouTube Captions",
   "host": "youtube-captions-transcript-subtitles-video-combiner.p.rapidapi.com",
-  "description": "YouTube transcripts, captions, subtitles, and video combiner",
+  "description": "YouTube Captions, Transcript, Subtitles - Download captions in SRT, VTT, XML, JSON formats, translate to any language",
   "rapidapi_key": null,
+  "subscription_url": "https://rapidapi.com/nikzeferis/api/youtube-captions-transcript-subtitles-video-combiner",
+  "pricing_tiers": {
+    "basic": "Free",
+    "pro": "$3.87/mo",
+    "ultra": "$13.87/mo",
+    "mega": "$34.98/mo"
+  },
   "endpoints": {
-    "transcript": {
-      "path": "/transcript",
-      "params": {"video_id": "string"},
-      "description": "Get transcript for a YouTube video"
+    "video_info": {
+      "path": "/get-video-info/{videoId}",
+      "method": "GET",
+      "description": "Get detailed video information (title, description, author, views, keywords, thumbnails, etc.)",
+      "params": {
+        "videoId": {
+          "type": "string",
+          "required": true,
+          "description": "YouTube Video ID",
+          "url_param": true
+        },
+        "format": {
+          "type": "string",
+          "required": false,
+          "description": "Response format: xml or json (default: json)"
+        },
+        "response_mode": {
+          "type": "string",
+          "required": false,
+          "description": "Set to 'url' to get a link to the response instead of the response itself (saves bandwidth)"
+        }
+      },
+      "quota_cost": 1
     },
-    "captions": {
-      "path": "/captions",
-      "params": {"video_id": "string"},
-      "description": "Get captions for a YouTube video"
+    "language_list": {
+      "path": "/language-list/{videoId}",
+      "method": "GET",
+      "description": "Get list of all available caption languages for a video",
+      "params": {
+        "videoId": {
+          "type": "string",
+          "required": true,
+          "description": "YouTube Video ID",
+          "url_param": true
+        },
+        "format": {
+          "type": "string",
+          "required": false,
+          "description": "Response format: xml or json (default: json)"
+        },
+        "response_mode": {
+          "type": "string",
+          "required": false,
+          "description": "Set to 'url' to get a link to the response instead of the response itself (saves bandwidth)"
+        }
+      },
+      "quota_cost": 1
+    },
+    "download_srt": {
+      "path": "/download-srt/{videoId}",
+      "method": "GET",
+      "description": "Download video captions in SRT format",
+      "params": {
+        "videoId": {
+          "type": "string",
+          "required": true,
+          "description": "YouTube Video ID",
+          "url_param": true
+        },
+        "language": {
+          "type": "string",
+          "required": true,
+          "description": "Language code (e.g., en, de, es). Get available languages from /language-list endpoint"
+        },
+        "response_mode": {
+          "type": "string",
+          "required": false,
+          "description": "Set to 'url' to get a link to the response instead of the response itself (saves bandwidth)"
+        }
+      },
+      "quota_cost": 1
+    },
+    "download_xml": {
+      "path": "/download-xml/{videoId}",
+      "method": "GET",
+      "description": "Download video captions in XML format",
+      "params": {
+        "videoId": {
+          "type": "string",
+          "required": true,
+          "description": "YouTube Video ID",
+          "url_param": true
+        },
+        "language": {
+          "type": "string",
+          "required": true,
+          "description": "Language code (e.g., en, de, es). Get available languages from /language-list endpoint"
+        },
+        "response_mode": {
+          "type": "string",
+          "required": false,
+          "description": "Set to 'url' to get a link to the response instead of the response itself (saves bandwidth)"
+        }
+      },
+      "quota_cost": 1
+    },
+    "download_json": {
+      "path": "/download-json/{videoId}",
+      "method": "GET",
+      "description": "Download video captions in JSON format with start time, duration, and text",
+      "params": {
+        "videoId": {
+          "type": "string",
+          "required": true,
+          "description": "YouTube Video ID",
+          "url_param": true
+        },
+        "language": {
+          "type": "string",
+          "required": true,
+          "description": "Language code (e.g., en, de, es). Get available languages from /language-list endpoint"
+        },
+        "response_mode": {
+          "type": "string",
+          "required": false,
+          "description": "Set to 'url' to get a link to the response instead of the response itself (saves bandwidth)"
+        }
+      },
+      "quota_cost": 1
+    },
+    "download_webvtt": {
+      "path": "/download-webvtt/{videoId}",
+      "method": "GET",
+      "description": "Download video captions in WebVTT format",
+      "params": {
+        "videoId": {
+          "type": "string",
+          "required": true,
+          "description": "YouTube Video ID",
+          "url_param": true
+        },
+        "language": {
+          "type": "string",
+          "required": true,
+          "description": "Language code (e.g., en, de, es). Get available languages from /language-list endpoint"
+        },
+        "response_mode": {
+          "type": "string",
+          "required": false,
+          "description": "Set to 'url' to get a link to the response instead of the response itself (saves bandwidth)"
+        }
+      },
+      "quota_cost": 1
+    },
+    "download_all": {
+      "path": "/download-all/{videoId}",
+      "method": "GET",
+      "description": "Download all available captions for a video in all available languages",
+      "params": {
+        "videoId": {
+          "type": "string",
+          "required": true,
+          "description": "YouTube Video ID",
+          "url_param": true
+        },
+        "format_subtitle": {
+          "type": "string",
+          "required": false,
+          "description": "Subtitle format: xml, json, srt, webvtt (default: json)"
+        },
+        "format_answer": {
+          "type": "string",
+          "required": false,
+          "description": "Server response format: xml or json (default: json)"
+        },
+        "response_mode": {
+          "type": "string",
+          "required": false,
+          "description": "Set to 'url' to get a link to the response instead of the response itself (saves bandwidth)"
+        }
+      },
+      "quota_cost": 1
     }
   },
-  "subscription_url_pattern": "https://rapidapi.com/*/youtube-captions*",
-  "subscription_required": true
+  "features": {
+    "multi_language_captions": "Download captions in any available language",
+    "multiple_formats": "SRT, VTT, XML, JSON formats supported",
+    "universal_translation": "Translate subtitles to any language (even if not available on YouTube)",
+    "bulk_download": "Download all available captions at once",
+    "bandwidth_saving": "Use response_mode=url to get links instead of full responses"
+  },
+  "response_format": {
+    "json_structure": {
+      "start": "float - Start time in seconds",
+      "dur": "float - Duration in seconds",
+      "text": "string - Subtitle text"
+    },
+    "all_captions_structure": {
+      "languageCode": "string - Language code (e.g., 'en', 'de')",
+      "subtitle": "array - Array of subtitle objects"
+    }
+  },
+  "error_codes": {
+    "404": "Video not found or subtitles not available",
+    "403": "Restricted content (private video, geo-blocked, etc.)"
+  }
 }

@@ -1,0 +1,413 @@
+{
+  "name": "YT-API",
+  "host": "yt-api.p.rapidapi.com",
+  "description": "YouTube Data API - Videos, channels, search, trending, playlists, comments, download/stream URLs",
+  "rapidapi_key": null,
+  "subscription_url": "https://rapidapi.com/ytjar/api/yt-api",
+  "pricing_tiers": {
+    "basic": "Free",
+    "pro": "$51/mo",
+    "ultra": "$144/mo",
+    "mega": "$240/mo"
+  },
+  "endpoints": {
+    "video": {
+      "path": "/video",
+      "method": "GET",
+      "description": "Get video information by video ID",
+      "params": {
+        "id": {
+          "type": "string",
+          "required": true,
+          "description": "YouTube Video ID"
+        },
+        "pretty": {
+          "type": "integer",
+          "required": false,
+          "description": "Pretty JSON output (1 for yes)"
+        },
+        "geo": {
+          "type": "string",
+          "required": false,
+          "description": "ISO 3166-2 country code (e.g., US, UK, DE)"
+        },
+        "lang": {
+          "type": "string",
+          "required": false,
+          "description": "Language code (e.g., en, de, fr)"
+        }
+      },
+      "quota_cost": 1
+    },
+    "related": {
+      "path": "/related",
+      "method": "GET",
+      "description": "Get related videos for a video",
+      "params": {
+        "id": {
+          "type": "string",
+          "required": true,
+          "description": "YouTube Video ID"
+        },
+        "token": {
+          "type": "string",
+          "required": false,
+          "description": "Pagination token"
+        },
+        "pretty": {
+          "type": "integer",
+          "required": false,
+          "description": "Pretty JSON output (1 for yes)"
+        },
+        "geo": {
+          "type": "string",
+          "required": false,
+          "description": "ISO 3166-2 country code"
+        },
+        "lang": {
+          "type": "string",
+          "required": false,
+          "description": "Language code"
+        }
+      },
+      "quota_cost": 1
+    },
+    "trending": {
+      "path": "/trending",
+      "method": "GET",
+      "description": "Get trending videos by region and type",
+      "params": {
+        "geo": {
+          "type": "string",
+          "required": false,
+          "description": "ISO 3166-2 country code (default: US)"
+        },
+        "type": {
+          "type": "string",
+          "required": false,
+          "description": "Trending type: now, music, games, movies (default: now)"
+        },
+        "pretty": {
+          "type": "integer",
+          "required": false,
+          "description": "Pretty JSON output (1 for yes)"
+        },
+        "lang": {
+          "type": "string",
+          "required": false,
+          "description": "Language code"
+        }
+      },
+      "quota_cost": 1
+    },
+    "search": {
+      "path": "/search",
+      "method": "GET",
+      "description": "Search videos, channels, playlists, movies, or shows",
+      "params": {
+        "query": {
+          "type": "string",
+          "required": true,
+          "description": "Search query"
+        },
+        "type": {
+          "type": "string",
+          "required": false,
+          "description": "Filter: video, channel, playlist, movie, show"
+        },
+        "sort": {
+          "type": "string",
+          "required": false,
+          "description": "Sort by: relevance, date, rating, views (for videos)"
+        },
+        "duration": {
+          "type": "string",
+          "required": false,
+          "description": "Video duration: short (<4min), medium (4-20min), long (>20min)"
+        },
+        "upload_date": {
+          "type": "string",
+          "required": false,
+          "description": "Upload date filter: hour, today, week, month, year"
+        },
+        "features": {
+          "type": "string",
+          "required": false,
+          "description": "Features filter: HD, subtitles, 3D, Live, Purchased, 4K, 360, Location, HDR, VR180 (comma-separated)"
+        },
+        "token": {
+          "type": "string",
+          "required": false,
+          "description": "Pagination token"
+        },
+        "pretty": {
+          "type": "integer",
+          "required": false,
+          "description": "Pretty JSON output (1 for yes)"
+        },
+        "geo": {
+          "type": "string",
+          "required": false,
+          "description": "ISO 3166-2 country code"
+        },
+        "lang": {
+          "type": "string",
+          "required": false,
+          "description": "Language code"
+        }
+      },
+      "quota_cost": 1
+    },
+    "playlist": {
+      "path": "/playlist",
+      "method": "GET",
+      "description": "Get playlist videos",
+      "params": {
+        "id": {
+          "type": "string",
+          "required": true,
+          "description": "YouTube Playlist ID"
+        },
+        "token": {
+          "type": "string",
+          "required": false,
+          "description": "Pagination token"
+        },
+        "pretty": {
+          "type": "integer",
+          "required": false,
+          "description": "Pretty JSON output (1 for yes)"
+        },
+        "geo": {
+          "type": "string",
+          "required": false,
+          "description": "ISO 3166-2 country code"
+        },
+        "lang": {
+          "type": "string",
+          "required": false,
+          "description": "Language code"
+        }
+      },
+      "quota_cost": 1
+    },
+    "channel": {
+      "path": "/channel",
+      "method": "GET",
+      "description": "Get channel information and videos",
+      "params": {
+        "id": {
+          "type": "string",
+          "required": true,
+          "description": "YouTube Channel ID"
+        },
+        "sort_by": {
+          "type": "string",
+          "required": false,
+          "description": "Sort videos: newest, oldest, popular"
+        },
+        "token": {
+          "type": "string",
+          "required": false,
+          "description": "Pagination token"
+        },
+        "pretty": {
+          "type": "integer",
+          "required": false,
+          "description": "Pretty JSON output (1 for yes)"
+        },
+        "geo": {
+          "type": "string",
+          "required": false,
+          "description": "ISO 3166-2 country code"
+        },
+        "lang": {
+          "type": "string",
+          "required": false,
+          "description": "Language code"
+        }
+      },
+      "quota_cost": 1
+    },
+    "comments": {
+      "path": "/comments",
+      "method": "GET",
+      "description": "Get comments for a video",
+      "params": {
+        "id": {
+          "type": "string",
+          "required": true,
+          "description": "YouTube Video ID"
+        },
+        "token": {
+          "type": "string",
+          "required": false,
+          "description": "Pagination token"
+        },
+        "pretty": {
+          "type": "integer",
+          "required": false,
+          "description": "Pretty JSON output (1 for yes)"
+        },
+        "geo": {
+          "type": "string",
+          "required": false,
+          "description": "ISO 3166-2 country code"
+        },
+        "lang": {
+          "type": "string",
+          "required": false,
+          "description": "Language code"
+        }
+      },
+      "quota_cost": 1
+    },
+    "hashtag": {
+      "path": "/hashtag",
+      "method": "GET",
+      "description": "Get videos by hashtag",
+      "params": {
+        "id": {
+          "type": "string",
+          "required": true,
+          "description": "Hashtag (without #)"
+        },
+        "pretty": {
+          "type": "integer",
+          "required": false,
+          "description": "Pretty JSON output (1 for yes)"
+        },
+        "geo": {
+          "type": "string",
+          "required": false,
+          "description": "ISO 3166-2 country code"
+        },
+        "lang": {
+          "type": "string",
+          "required": false,
+          "description": "Language code"
+        }
+      },
+      "quota_cost": 1
+    },
+    "resolve": {
+      "path": "/resolve",
+      "method": "GET",
+      "description": "Resolve YouTube URL to video/channel/playlist ID",
+      "params": {
+        "url": {
+          "type": "string",
+          "required": true,
+          "description": "YouTube URL to resolve"
+        },
+        "pretty": {
+          "type": "integer",
+          "required": false,
+          "description": "Pretty JSON output (1 for yes)"
+        }
+      },
+      "quota_cost": 1
+    },
+    "download": {
+      "path": "/dl",
+      "method": "GET",
+      "description": "Get download/stream URL for a video",
+      "params": {
+        "id": {
+          "type": "string",
+          "required": true,
+          "description": "YouTube Video ID"
+        },
+        "cgeo": {
+          "type": "string",
+          "required": false,
+          "description": "Country code for geo-restricted content"
+        },
+        "pretty": {
+          "type": "integer",
+          "required": false,
+          "description": "Pretty JSON output (1 for yes)"
+        }
+      },
+      "quota_cost": 6
+    },
+    "home": {
+      "path": "/home",
+      "method": "GET",
+      "description": "Get home feed recommendations",
+      "params": {
+        "pretty": {
+          "type": "integer",
+          "required": false,
+          "description": "Pretty JSON output (1 for yes)"
+        },
+        "geo": {
+          "type": "string",
+          "required": false,
+          "description": "ISO 3166-2 country code"
+        },
+        "lang": {
+          "type": "string",
+          "required": false,
+          "description": "Language code"
+        }
+      },
+      "quota_cost": 1
+    },
+    "suggest": {
+      "path": "/suggest",
+      "method": "GET",
+      "description": "Get search query suggestions/autocomplete",
+      "params": {
+        "query": {
+          "type": "string",
+          "required": true,
+          "description": "Partial search query"
+        },
+        "pretty": {
+          "type": "integer",
+          "required": false,
+          "description": "Pretty JSON output (1 for yes)"
+        }
+      },
+      "quota_cost": 1
+    },
+    "hype": {
+      "path": "/hype",
+      "method": "GET",
+      "description": "Get hype (trending) videos",
+      "params": {
+        "pretty": {
+          "type": "integer",
+          "required": false,
+          "description": "Pretty JSON output (1 for yes)"
+        },
+        "geo": {
+          "type": "string",
+          "required": false,
+          "description": "ISO 3166-2 country code"
+        },
+        "lang": {
+          "type": "string",
+          "required": false,
+          "description": "Language code"
+        }
+      },
+      "quota_cost": 1
+    }
+  },
+  "global_params": {
+    "pretty": {
+      "type": "integer",
+      "description": "Pretty JSON output (1 for yes)"
+    },
+    "geo": {
+      "type": "string",
+      "description": "ISO 3166-2 country code for regional content"
+    },
+    "lang": {
+      "type": "string",
+      "description": "Language code for localization"
+    }
+  }
+}

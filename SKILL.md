@@ -178,7 +178,53 @@ Find APIs for unknown requests. Searches RapidAPI for relevant APIs when no know
 
 ---
 
+## Token Optimization for Browser Scraping
+
+When scraping RapidAPI documentation pages via browser, use these optimizations to reduce token usage:
+
+### 1. Use `compact: true` for Snapshots
+
+```json
+{
+  "action": "snapshot",
+  "compact": true,
+  "profile": "chrome"
+}
+```
+
+**Result:** Reduces ~1.5k tokens → ~200 tokens per snapshot
+
+### 2. Use Screenshot for Visual Parameters
+
+When you only need to see parameter values visually:
+
+```json
+{
+  "action": "screenshot",
+  "profile": "chrome"
+}
+```
+
+### 3. Selective Element Access
+
+Instead of full page snapshots, use targeted selectors when possible.
+
+---
+
 ## Available APIs
+
+### IMDb146
+- **Host:** `imdb146.p.rapidapi.com`
+- **Description:** Movie database - titles, names, videos, news
+- **Documentation:** https://rapidapi.com/Glavier/api/imdb146
+
+| Endpoint | Method | URL | Parameters |
+|----------|--------|-----|------------|
+| Find | GET | `/v1/find/` | `query` (string, required) |
+| Title Details | GET | `/v1/title/` | `id` (string, required) - Title ID |
+| Name Details | GET | `/v1/name/` | `id` (string, required) - Name ID |
+| Video Details | GET | `/v1/video/` | `id` (string, required) - Video ID |
+| News Details | GET | `/v1/news/` | `id` (string, required) - News ID |
 
 ### YouTube
 - **Host:** youtube-v31.p.rapidapi.com

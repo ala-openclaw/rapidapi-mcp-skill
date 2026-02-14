@@ -24,29 +24,46 @@ This skill provides unified access to multiple RapidAPI-powered services. Each A
 
 ## Setup
 
-### Prerequisites
+### Quick Start (Free APIs - Work Immediately!)
 
-1. A RapidAPI account (https://rapidapi.com)
-2. API keys for desired services
+These APIs work without any API key:
 
-> ⚠️ **SECURITY**: Never hardcode API keys in config files or SKILL.md. Use environment variables or local config. All `apis/*.json` files have `rapidapi_key: null` by default — set your key there or via env var.
+```bash
+# Create config directory
+mkdir -p ~/.config/openclaw
 
-### API Key Storage
+# Test Open-Meteo (Weather)
+curl "https://api.open-meteo.com/v1/forecast?latitude=52.5&longitude=13.4&current_weather=true"
 
-**Location:** `~/.config/openclaw/api-keys.json`
+# Test OpenLibrary (Books)
+curl "https://openlibrary.org/search.json?q=python"
 
-```json
-{
-  "rapidapi_key": "YOUR_KEY_HERE"
-}
+# Test PoetryDB
+curl "https://poetrydb.org/title/love"
+
+# Test Gutendex (Free ebooks)
+curl "https://gutendex.com/books?search=alice"
+
+# Test Bible
+curl "https://bible-api.com/john+3:16"
 ```
 
-**Usage in API calls:**
-1. First check `~/.config/openclaw/api-keys.json` for `rapidapi_key`
-2. If not found, use `RAPIDAPI_KEY` environment variable
-3. Only use `null` from config files as fallback
+### Adding Your RapidAPI Key (Optional)
 
-### Quick Start
+For premium APIs (YouTube, Twitter, Reddit, etc.), add your RapidAPI key:
+
+1. Get a free key at https://rapidapi.com/auth/signup
+2. Create config:
+
+```bash
+mkdir -p ~/.config/openclaw
+echo '{"rapidapi_key": "YOUR_KEY_HERE"}' > ~/.config/openclaw/api-keys.json
+```
+
+Or set as environment variable:
+```bash
+export RAPIDAPI_KEY="YOUR_KEY_HERE"
+```
 
 ```bash
 # Run setup script to check all APIs
@@ -61,27 +78,28 @@ When the user requests data from a specific service, use this prompt to route to
 
 > **"Which API do you need?"**
 > 
+> **🌟 FREE (work without key):**
+> - Open-Meteo → `openmeteo` - Free global weather (best!)
+> - Open Library → `openlibrary` - Book search by title, author, ISBN
+> - Gutendex → `gutendex` - Project Gutenberg books
+> - PoetryDB → `poetrydb` - Poems and poetry
+> - Bible → `bible` - Holy Bible verses
+> - CoinGecko → `coingecko` - Free crypto prices
+> 
+> **🔑 NEEDS RAPIDAPI KEY:**
 > - YouTube → `youtube` - Videos, channels, trending
 > - Twitter/X → `twitter` - Tweets, profiles, trends
 > - Reddit → `reddit` - Posts, comments, subreddits
-> - News → `news` - Latest headlines, articles
+> - News → `news` - Latest headlines
 > - Weather → `weather` - Current weather, forecasts
 > - Streaming → `streaming` - Where to watch movies/shows
-> - Crypto → `crypto` - Prices, market data
 > - Instagram → `instagram` - Profiles, posts, stories
-- Books → `books` - Search German books, by genre, date
-- Wikipedia → `wikipedia` - German Wikipedia articles and search
-- OpenStreetMap → `openstreetmap` - Geocoding, locations, maps
-- Open Library → `openlibrary` - Book search by title, author, ISBN
-- Wikidata → `wikidata` - Structured facts and entities
-- Archive → `archive` - Internet Archive (books, media, web archives)
-- CoinGecko → `coingecko` - Free Crypto data (prices, trending, market cap)
-- Open-Meteo → `openmeteo` - Free global weather (best!)
-- Gutendex → `gutendex` - Project Gutenberg books
-- PoetryDB → `poetrydb` - Poems and poetry
-- Harry Potter → `harrypotter` - HP books, characters, spells
-- Bible → `bible` - Holy Bible verses
-- Nobel Prize → `nobel` - Nobel laureates and prizes
+> - Wikipedia → `wikipedia` - Wikipedia articles
+> - OpenStreetMap → `openstreetmap` - Geocoding, maps
+> - Wikidata → `wikidata` - Structured facts
+> - Archive → `archive` - Internet Archive
+> - Harry Potter → `harrypotter` - HP characters, spells
+> - Nobel Prize → `nobel` - Nobel laureates
 
 ---
 

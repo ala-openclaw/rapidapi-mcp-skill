@@ -1,0 +1,27 @@
+{
+  "name": "YouTube",
+  "host": "youtube-v31.p.rapidapi.com",
+  "description": "YouTube Data API - Search videos, get channel info, video details, trending content",
+  "rapidapi_key": null,
+  "endpoints": {
+    "search": {
+      "path": "/search",
+      "params": {
+        "query": "string",
+        "part": "snippet",
+        "maxResults": "10"
+      },
+      "description": "Search for YouTube videos"
+    },
+    "videoDetails": {
+      "path": "/videos",
+      "params": {
+        "part": "snippet,contentDetails,statistics",
+        "id": "string"
+      },
+      "description": "Get video details by ID"
+    }
+  },
+  "subscription_url_pattern": "https://rapidapi.com/*/youtube-v31*",
+  "subscription_required": true
+}

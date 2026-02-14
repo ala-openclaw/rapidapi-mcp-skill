@@ -1,0 +1,26 @@
+{
+  "name": "TikTok",
+  "host": "TODO: add host from RapidAPI",
+  "description": "TikTok API - video info, user profiles, trending",
+  "rapidapi_key": null,
+  "endpoints": {
+    "userProfile": {
+      "path": "/user",
+      "params": {"username": "string"},
+      "description": "Get TikTok user profile"
+    },
+    "userVideos": {
+      "path": "/videos",
+      "params": {"username": "string"},
+      "description": "Get user's TikTok videos"
+    },
+    "trending": {
+      "path": "/trending",
+      "params": {},
+      "description": "Get trending TikToks"
+    }
+  },
+  "subscription_url_pattern": "https://rapidapi.com/*/tiktok*",
+  "subscription_required": true,
+  "note": "Host not set yet - get from RapidAPI dashboard"
+}

@@ -9,7 +9,9 @@
     "language": "language=en filters English tweets. Use start_date/end_date for date range.",
     "pagination": "Use continuation_token from response to get more results.",
     "min_retweets": "Note: min_retweets=N returns tweets with >= N retweets. A tweet with 970 RT will be excluded when min_retweets=1000.",
-    "replies": "The /tweet/replies endpoint returns results in 'replies' array, not 'results'."
+    "replies": "The /tweet/replies endpoint returns results in 'replies' array, not 'results'.",
+    "optimal_filters": "Best combo for quality results: min_retweets=100 + min_likes=100 + min_replies=50 + language=en. Reduces spam effectively.",
+    "limit": "The API returns max ~20 tweets per call regardless of limit parameter."
   },
   "endpoints": {
     "search": {

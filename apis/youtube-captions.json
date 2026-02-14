@@ -10,6 +10,16 @@
     "ultra": "$13.87/mo",
     "mega": "$34.98/mo"
   },
+  "best_practices": {
+    "language": "Start with 'en' (English). Most videos have English subtitles. Only call /language-list if 'en' returns 404.",
+    "response_mode": "Use response_mode=url for faster response and less bandwidth. The API returns a URL to fetch the actual data.",
+    "retry": "API can be slow or timeout. Implement 1-2 retries with exponential backoff.",
+    "parallel": "For multiple videos, fetch transcripts in parallel using async/parallel requests."
+  },
+  "error_handling": {
+    "404": "Video not found or subtitles not available. Try a different language or check if video exists.",
+    "403": "Restricted content (private video, geo-blocked, etc.)"
+  },
   "endpoints": {
     "video_info": {
       "path": "/get-video-info/{videoId}",
@@ -73,7 +83,7 @@
         "language": {
           "type": "string",
           "required": true,
-          "description": "Language code (e.g., en, de, es). Get available languages from /language-list endpoint"
+          "description": "Language code (e.g., en, de, es). Start with 'en' - most videos have English subtitles."
         },
         "response_mode": {
           "type": "string",
@@ -97,7 +107,7 @@
         "language": {
           "type": "string",
           "required": true,
-          "description": "Language code (e.g., en, de, es). Get available languages from /language-list endpoint"
+          "description": "Language code (e.g., en, de, es). Start with 'en' - most videos have English subtitles."
         },
         "response_mode": {
           "type": "string",
@@ -145,7 +155,7 @@
         "language": {
           "type": "string",
           "required": true,
-          "description": "Language code (e.g., en, de, es). Get available languages from /language-list endpoint"
+          "description": "Language code (e.g., en, de, es). Start with 'en' - most videos have English subtitles."
         },
         "response_mode": {
           "type": "string",

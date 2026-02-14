@@ -24,6 +24,18 @@ This skill provides unified access to multiple RapidAPI-powered services. Each A
 
 ## Setup
 
+### Best Practices for YouTube APIs
+
+**Speed Optimization:**
+1. **Try 'en' first** - Most videos have English subtitles. Skip language-list check.
+2. **Use response_mode=url** - Faster response, less bandwidth
+3. **Parallel requests** - For multiple videos, use async/parallel curl
+4. **Retry logic** - Implement 1-2 retries with backoff for slow API responses
+
+**Error Handling:**
+- 404 → Video not found or no subtitles. Try different language.
+- 403 → Restricted content (private, geo-blocked)
+
 ### Quick Start (Free APIs - Work Immediately!)
 
 These APIs work without any API key:

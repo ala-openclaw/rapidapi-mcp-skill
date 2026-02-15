@@ -1,9 +1,13 @@
 {
-  "name": "Twitter (twitter154)",
+  "name": "Twitter (twitter154) - The Old Bird API",
   "host": "twitter154.p.rapidapi.com",
-  "description": "Twitter/X API - search tweets, user profiles, followers, following",
+  "description": "Twitter/X API - search tweets, user profiles, followers, following, replies, trends, translation, AI",
   "rapidapi_key": null,
-  "subscription_url": "https://rapidapi.com/dschlenk/api/twitter154",
+  "subscription_url": "https://rapidapi.com/datahungrybeast/api/The%20Old%20Bird",
+  "api_slug": "twitter154",
+  "provider": "datahungrybeast",
+  "api_id": "api_9f7cf164-eb91-4d9c-8948-06d7f1faee09",
+  "version": "0.1.0",
   "best_practices": {
     "search": "Use section=top for popular tweets, section=latest for recent. Filter with min_likes and min_retweets.",
     "language": "language=en filters English tweets. Use start_date/end_date for date range.",
@@ -76,6 +80,59 @@
       },
       "quota_cost": 1
     },
+    "search_post": {
+      "path": "/search/search",
+      "method": "POST",
+      "description": "Search tweets by query (POST variant)",
+      "params": {
+        "query": {
+          "type": "string",
+          "required": true,
+          "description": "Search query"
+        },
+        "section": {
+          "type": "string",
+          "required": false,
+          "description": "top or latest"
+        },
+        "limit": {
+          "type": "number",
+          "required": false,
+          "description": "Number of results"
+        },
+        "language": {
+          "type": "string",
+          "required": false,
+          "description": "Filter by language"
+        },
+        "start_date": {
+          "type": "string",
+          "required": false,
+          "description": "Start date (YYYY-MM-DD)"
+        },
+        "end_date": {
+          "type": "string",
+          "required": false,
+          "description": "End date (YYYY-MM-DD)"
+        },
+        "min_likes": {
+          "type": "number",
+          "required": false,
+          "description": "Minimum likes"
+        },
+        "min_retweets": {
+          "type": "number",
+          "required": false,
+          "description": "Minimum retweets"
+        },
+        "min_replies": {
+          "type": "number",
+          "required": false,
+          "description": "Minimum replies"
+        }
+      },
+      "quota_cost": 1
+    },
     "search_continuation": {
       "path": "/search/search/continuation",
       "method": "GET",
@@ -134,20 +191,30 @@
       },
       "quota_cost": 1
     },
-    "user_tweets": {
-      "path": "/user/tweets",
-      "method": "GET",
-      "description": "Get user's tweets",
+    "search_continuation_post": {
+      "path": "/search/search/continuation",
+      "method": "POST",
+      "description": "Get more search results using continuation token (POST variant)",
       "params": {
-        "username": {
+        "continuation_token": {
           "type": "string",
           "required": true,
-          "description": "Twitter username (without @)"
+          "description": "Token from previous search response"
+        },
+        "query": {
+          "type": "string",
+          "required": true,
+          "description": "Original search query"
+        },
+        "section": {
+          "type": "string",
+          "required": false,
+          "description": "top or latest"
         },
         "limit": {
           "type": "number",
           "required": false,
-          "description": "Number of tweets (max 100)"
+          "description": "Number of results"
         }
       },
       "quota_cost": 1
@@ -175,7 +242,7 @@
         "range": {
           "type": "number",
           "required": false,
-          "description": "Radius in km"
+          "description": "Radius in km (default: 32)"
         },
         "section": {
           "type": "string",
@@ -195,41 +262,229 @@
       },
       "quota_cost": 1
     },
+    "hashtag": {
+      "path": "/hashtag/hashtag",
+      "method": "GET",
+      "description": "Search hashtags",
+      "params": {
+        "query": {
+          "type": "string",
+          "required": true,
+          "description": "Hashtag to search (without #)"
+        },
+        "limit": {
+          "type": "number",
+          "required": false,
+          "description": "Number of results"
+        }
+      },
+      "quota_cost": 1
+    },
+    "hashtag_post": {
+      "path": "/hashtag/hashtag",
+      "method": "POST",
+      "description": "Search hashtags (POST variant)",
+      "params": {
+        "query": {
+          "type": "string",
+          "required": true,
+          "description": "Hashtag to search (without #)"
+        },
+        "limit": {
+          "type": "number",
+          "required": false,
+          "description": "Number of results"
+        }
+      },
+      "quota_cost": 1
+    },
+    "hashtag_continuation": {
+      "path": "/hashtag/hashtag/continuation",
+      "method": "GET",
+      "description": "Get more hashtag results using continuation token",
+      "params": {
+        "continuation_token": {
+          "type": "string",
+          "required": true,
+          "description": "Token from previous response"
+        }
+      },
+      "quota_cost": 1
+    },
+    "hashtag_continuation_post": {
+      "path": "/hashtag/hashtag/continuation",
+      "method": "POST",
+      "description": "Get more hashtag results using continuation token (POST variant)",
+      "params": {
+        "continuation_token": {
+          "type": "string",
+          "required": true,
+          "description": "Token from previous response"
+        }
+      },
+      "quota_cost": 1
+    },
     "trends": {
       "path": "/trends/",
       "method": "GET",
-      "description": "Get trending topics",
+      "description": "Get trending topics by location",
       "params": {
         "woeid": {
           "type": "number",
           "required": false,
-          "description": "Where On Earth ID (1 = worldwide, 23424868 = Germany, etc.)"
+          "description": "Where On Earth ID (1 = worldwide, 23424977=USA, 44418=London, 2459115=NYC, 23424829=Germany, etc.)"
         }
       },
       "quota_cost": 1
     },
-    "tweet_replies": {
-      "path": "/tweet/replies",
+    "trends_available": {
+      "path": "/trends/available",
       "method": "GET",
-      "description": "Get replies to a tweet",
+      "description": "Get list of available locations for trends",
+      "params": {},
+      "quota_cost": 1
+    },
+    "lists_details": {
+      "path": "/lists/details",
+      "method": "GET",
+      "description": "Get Twitter list information",
       "params": {
-        "tweet_id": {
+        "list_id": {
           "type": "string",
           "required": true,
-          "description": "Tweet ID"
+          "description": "Twitter List ID"
         }
       },
       "quota_cost": 1
     },
-    "tweet_details": {
-      "path": "/tweet/details",
+    "lists_tweets": {
+      "path": "/lists/tweets",
       "method": "GET",
-      "description": "Get single tweet details by ID",
+      "description": "Get tweets from a Twitter list",
       "params": {
-        "tweet_id": {
+        "list_id": {
           "type": "string",
           "required": true,
-          "description": "Tweet ID"
+          "description": "Twitter List ID"
+        },
+        "limit": {
+          "type": "number",
+          "required": false,
+          "description": "Number of tweets"
+        }
+      },
+      "quota_cost": 1
+    },
+    "lists_tweets_continuation": {
+      "path": "/lists/tweets/continuation",
+      "method": "GET",
+      "description": "Get more tweets from a Twitter list using continuation token",
+      "params": {
+        "continuation_token": {
+          "type": "string",
+          "required": true,
+          "description": "Token from previous response"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_details": {
+      "path": "/user/details",
+      "method": "GET",
+      "description": "Get user profile information",
+      "params": {
+        "username": {
+          "type": "string",
+          "required": true,
+          "description": "Twitter username (without @)"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_details_post": {
+      "path": "/user/details",
+      "method": "POST",
+      "description": "Get user profile information (POST variant)",
+      "params": {
+        "username": {
+          "type": "string",
+          "required": true,
+          "description": "Twitter username (without @)"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_about": {
+      "path": "/user/about",
+      "method": "GET",
+      "description": "Get user profile info (name, bio, location, etc.)",
+      "params": {
+        "username": {
+          "type": "string",
+          "required": true,
+          "description": "Twitter username (without @)"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_tweets": {
+      "path": "/user/tweets",
+      "method": "GET",
+      "description": "Get user's tweets",
+      "params": {
+        "username": {
+          "type": "string",
+          "required": true,
+          "description": "Twitter username (without @)"
+        },
+        "limit": {
+          "type": "number",
+          "required": false,
+          "description": "Number of tweets (max 100)"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_tweets_post": {
+      "path": "/user/tweets",
+      "method": "POST",
+      "description": "Get user's tweets (POST variant)",
+      "params": {
+        "username": {
+          "type": "string",
+          "required": true,
+          "description": "Twitter username (without @)"
+        },
+        "limit": {
+          "type": "number",
+          "required": false,
+          "description": "Number of tweets (max 100)"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_tweets_continuation": {
+      "path": "/user/tweets/continuation",
+      "method": "GET",
+      "description": "Get more user tweets using continuation token",
+      "params": {
+        "continuation_token": {
+          "type": "string",
+          "required": true,
+          "description": "Token from previous response"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_tweets_continuation_post": {
+      "path": "/user/tweets/continuation",
+      "method": "POST",
+      "description": "Get more user tweets using continuation token (POST variant)",
+      "params": {
+        "continuation_token": {
+          "type": "string",
+          "required": true,
+          "description": "Token from previous response"
         }
       },
       "quota_cost": 1
@@ -252,6 +507,50 @@
       },
       "quota_cost": 1
     },
+    "user_followers_post": {
+      "path": "/user/followers",
+      "method": "POST",
+      "description": "Get user's followers (POST variant)",
+      "params": {
+        "username": {
+          "type": "string",
+          "required": true,
+          "description": "Twitter username (without @)"
+        },
+        "limit": {
+          "type": "number",
+          "required": false,
+          "description": "Number of followers"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_followers_continuation": {
+      "path": "/user/followers/continuation",
+      "method": "GET",
+      "description": "Get more followers using continuation token",
+      "params": {
+        "continuation_token": {
+          "type": "string",
+          "required": true,
+          "description": "Token from previous response"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_followers_continuation_post": {
+      "path": "/user/followers/continuation",
+      "method": "POST",
+      "description": "Get more followers using continuation token (POST variant)",
+      "params": {
+        "continuation_token": {
+          "type": "string",
+          "required": true,
+          "description": "Token from previous response"
+        }
+      },
+      "quota_cost": 1
+    },
     "user_following": {
       "path": "/user/following",
       "method": "GET",
@@ -270,10 +569,54 @@
       },
       "quota_cost": 1
     },
-    "user_about": {
-      "path": "/user/about",
+    "user_following_post": {
+      "path": "/user/following",
+      "method": "POST",
+      "description": "Get users that a user follows (POST variant)",
+      "params": {
+        "username": {
+          "type": "string",
+          "required": true,
+          "description": "Twitter username (without @)"
+        },
+        "limit": {
+          "type": "number",
+          "required": false,
+          "description": "Number of following"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_following_continuation": {
+      "path": "/user/following/continuation",
       "method": "GET",
-      "description": "Get user profile info (name, bio, location, etc.)",
+      "description": "Get more following using continuation token",
+      "params": {
+        "continuation_token": {
+          "type": "string",
+          "required": true,
+          "description": "Token from previous response"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_following_continuation_post": {
+      "path": "/user/following/continuation",
+      "method": "POST",
+      "description": "Get more following using continuation token (POST variant)",
+      "params": {
+        "continuation_token": {
+          "type": "string",
+          "required": true,
+          "description": "Token from previous response"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_likes": {
+      "path": "/user/likes",
+      "method": "GET",
+      "description": "Get tweets a user has liked",
       "params": {
         "username": {
           "type": "string",
@@ -282,6 +625,302 @@
         }
       },
       "quota_cost": 1
+    },
+    "user_likes_post": {
+      "path": "/user/likes",
+      "method": "POST",
+      "description": "Get tweets a user has liked (POST variant)",
+      "params": {
+        "username": {
+          "type": "string",
+          "required": true,
+          "description": "Twitter username (without @)"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_likes_continuation": {
+      "path": "/user/likes/continuation",
+      "method": "GET",
+      "description": "Get more liked tweets using continuation token",
+      "params": {
+        "continuation_token": {
+          "type": "string",
+          "required": true,
+          "description": "Token from previous response"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_likes_continuation_post": {
+      "path": "/user/likes/continuation",
+      "method": "POST",
+      "description": "Get more liked tweets using continuation token (POST variant)",
+      "params": {
+        "continuation_token": {
+          "type": "string",
+          "required": true,
+          "description": "Token from previous response"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_medias": {
+      "path": "/user/medias",
+      "method": "GET",
+      "description": "Get user's media (images, videos)",
+      "params": {
+        "user_id": {
+          "type": "string",
+          "required": true,
+          "description": "Twitter user ID"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_medias_post": {
+      "path": "/user/medias",
+      "method": "POST",
+      "description": "Get user's media (images, videos) (POST variant)",
+      "params": {
+        "user_id": {
+          "type": "string",
+          "required": true,
+          "description": "Twitter user ID"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_medias_continuation": {
+      "path": "/user/medias/continuation",
+      "method": "GET",
+      "description": "Get more user media using continuation token",
+      "params": {
+        "continuation_token": {
+          "type": "string",
+          "required": true,
+          "description": "Token from previous response"
+        }
+      },
+      "quota_cost": 1
+    },
+    "user_medias_continuation_post": {
+      "path": "/user/medias/continuation",
+      "method": "POST",
+      "description": "Get more user media using continuation token (POST variant)",
+      "params": {
+        "continuation_token": {
+          "type": "string",
+          "required": true,
+          "description": "Token from previous response"
+        }
+      },
+      "quota_cost": 1
+    },
+    "tweet_details": {
+      "path": "/tweet/details",
+      "method": "GET",
+      "description": "Get single tweet details by ID",
+      "params": {
+        "tweet_id": {
+          "type": "string",
+          "required": true,
+          "description": "Tweet ID"
+        }
+      },
+      "quota_cost": 1
+    },
+    "tweet_details_post": {
+      "path": "/tweet/details",
+      "method": "POST",
+      "description": "Get single tweet details by ID (POST variant)",
+      "params": {
+        "tweet_id": {
+          "type": "string",
+          "required": true,
+          "description": "Tweet ID"
+        }
+      },
+      "quota_cost": 1
+    },
+    "tweet_replies": {
+      "path": "/tweet/replies",
+      "method": "GET",
+      "description": "Get replies to a tweet",
+      "params": {
+        "tweet_id": {
+          "type": "string",
+          "required": true,
+          "description": "Tweet ID"
+        }
+      },
+      "quota_cost": 1
+    },
+    "tweet_replies_post": {
+      "path": "/tweet/replies",
+      "method": "POST",
+      "description": "Get replies to a tweet (POST variant)",
+      "params": {
+        "tweet_id": {
+          "type": "string",
+          "required": true,
+          "description": "Tweet ID"
+        }
+      },
+      "quota_cost": 1
+    },
+    "tweet_replies_continuation": {
+      "path": "/tweet/replies/continuation",
+      "method": "GET",
+      "description": "Get more replies using continuation token",
+      "params": {
+        "continuation_token": {
+          "type": "string",
+          "required": true,
+          "description": "Token from previous response"
+        }
+      },
+      "quota_cost": 1
+    },
+    "tweet_replies_continuation_post": {
+      "path": "/tweet/replies/continuation",
+      "method": "POST",
+      "description": "Get more replies using continuation token (POST variant)",
+      "params": {
+        "continuation_token": {
+          "type": "string",
+          "required": true,
+          "description": "Token from previous response"
+        }
+      },
+      "quota_cost": 1
+    },
+    "tweet_retweets": {
+      "path": "/tweet/retweets",
+      "method": "GET",
+      "description": "Get users who retweeted a tweet",
+      "params": {
+        "tweet_id": {
+          "type": "string",
+          "required": true,
+          "description": "Tweet ID"
+        }
+      },
+      "quota_cost": 1
+    },
+    "tweet_retweets_continuation": {
+      "path": "/tweet/retweets/continuation",
+      "method": "GET",
+      "description": "Get more retweeters using continuation token",
+      "params": {
+        "continuation_token": {
+          "type": "string",
+          "required": true,
+          "description": "Token from previous response"
+        }
+      },
+      "quota_cost": 1
+    },
+    "tweet_favoriters": {
+      "path": "/tweet/favoriters",
+      "method": "GET",
+      "description": "Get users who liked a tweet",
+      "params": {
+        "tweet_id": {
+          "type": "string",
+          "required": true,
+          "description": "Tweet ID"
+        }
+      },
+      "quota_cost": 1
+    },
+    "tweet_favoriters_continuation": {
+      "path": "/tweet/favoriters/continuation",
+      "method": "GET",
+      "description": "Get more favoriters using continuation token",
+      "params": {
+        "continuation_token": {
+          "type": "string",
+          "required": true,
+          "description": "Token from previous response"
+        }
+      },
+      "quota_cost": 1
+    },
+    "translate": {
+      "path": "/translate",
+      "method": "POST",
+      "description": "Translate text between languages",
+      "params": {
+        "text": {
+          "type": "string",
+          "required": true,
+          "description": "Text to translate"
+        },
+        "source": {
+          "type": "string",
+          "required": false,
+          "description": "Source language (auto-detect if not specified)"
+        },
+        "target": {
+          "type": "string",
+          "required": true,
+          "description": "Target language code (e.g., en, es, de, fr)"
+        }
+      },
+      "quota_cost": 2
+    },
+    "translate_detect": {
+      "path": "/translate/detect",
+      "method": "POST",
+      "description": "Detect language of text",
+      "params": {
+        "text": {
+          "type": "string",
+          "required": true,
+          "description": "Text to analyze"
+        }
+      },
+      "quota_cost": 1
+    },
+    "ai_sentiment_analysis": {
+      "path": "/ai/sentiment-analysis",
+      "method": "GET",
+      "description": "Analyze sentiment of text (positive, negative, neutral)",
+      "params": {
+        "text": {
+          "type": "string",
+          "required": true,
+          "description": "Text to analyze"
+        }
+      },
+      "quota_cost": 2
+    },
+    "ai_named_entity_recognition": {
+      "path": "/ai/named-entity-recognition",
+      "method": "GET",
+      "description": "Extract named entities (persons, organizations, locations) from text",
+      "params": {
+        "text": {
+          "type": "string",
+          "required": true,
+          "description": "Text to analyze"
+        }
+      },
+      "quota_cost": 2
+    },
+    "ai_topic_classification": {
+      "path": "/ai/topic-classification",
+      "method": "GET",
+      "description": "Classify text into topics/themes",
+      "params": {
+        "text": {
+          "type": "string",
+          "required": true,
+          "description": "Text to classify"
+        }
+      },
+      "quota_cost": 2
     }
   },
   "response_format": {
@@ -310,7 +949,7 @@
       "text": "string",
       "media_url": "array or null",
       "video_url": "string or null",
-      "user": {...},
+      "user": {},
       "favorite_count": "number",
       "retweet_count": "number",
       "reply_count": "number",
@@ -328,6 +967,23 @@
       "profile_banner": {"image_url": "string"},
       "about_profile": {"location_accurate": "boolean"},
       "verification": {"verified": "boolean", "is_blue_verified": "boolean"}
+    },
+    "trends": {
+      "trends": "array of {name, url, query, tweet_volume}"
+    },
+    "translation": {
+      "translated_text": "string",
+      "detected_language": "string (for detect endpoint)"
+    },
+    "ai_sentiment": {
+      "sentiment": "string (positive/negative/neutral)",
+      "confidence": "number"
+    },
+    "ai_ner": {
+      "entities": "array of {text, type, score}"
+    },
+    "ai_topic": {
+      "topics": "array of {topic, confidence}"
     }
   },
   "example_usage": {
